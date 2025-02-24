@@ -1,0 +1,29 @@
+<div class="row justify-content-center align-items-center">
+    <div class="col-md-10 col-xs-12">
+        <div class="container">
+            <div id="the-vcard" class="row">
+                <img class="logo" src="imgs/bg/logo-caption-h.png" />
+                <div id="vcard-left-col" class="col-md-3 open">
+                    <ul id="vcard-nav" class="flex-column">
+                        <li><a ui-sref="vcard.profile"><label class="fa-label">Profile</label><i class="fa fa-user box" aria-hidden="true"></i></a></li>
+                        <li><a ui-sref="vcard.resume"><label class="fa-label">Resume</label><i class="fa fa-file-text-o box" aria-hidden="true"></i></a></li>
+                        <li><a ui-sref="vcard.portfolio"><label class="fa-label">Portfolio</label><i class="fa fa-suitcase box" aria-hidden="true"></i></a></li>
+                        <!--<li><a href="#blog">Blog <i class="fa fa-microphone" aria-hidden="true"></i></a></li>-->
+                        <li><a ui-sref="vcard.contacts"><label class="fa-label">Contacts</label><i class="fa fa-envelope-o box" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+                <div id="vcard-right-col" class="col-md-9" scrollbar="nameAppScroll">
+                    <div ui-view="content" class="fadeInLeft">
+
+                        <section ui-view="profile"></section>
+                        <section ui-view="resume"></section>
+                        <section ui-view="portfolio"></section>
+                        <!--<section ui-view="blog"></section> <!-- NOT USED FOR NOW -->
+                        <section ui-view="contacts"></section>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

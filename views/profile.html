@@ -1,0 +1,45 @@
+<div id="profile">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Profile - About Me</h1>
+                <blockquote>
+                    <strong>{{profile.name}} {{profile.lastName}}</strong>
+                    <h4>{{profile.title}}</h4>
+                    {{profile.description}}
+                </blockquote>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-7 col-lg-7">
+                <h2>Contact Info<span></span></h2>
+                <ul class="row-table">
+                    <li><h5>Name</h5><span>{{profile.name}} {{profile.lastName}}</span></li>
+                    <li><h5>Email</h5><span>{{profile.email}}</span></li>
+                    <li><h5>Phone</h5><span>{{profile.tel}}</span></li>
+                    <li><h5>Websites</h5><span style="margin-left: 10px;" ng-repeat="website in profile.website"><a href="{{website.url}}" target="_blank">{{website.site}}</a></span></li>
+                </ul>
+            </div>
+            <div class="col-sm-12 col-md-5 col-lg-4 push-lg-1">
+                <div id="profile-download">
+                    <h2>Quick Links<span></span></h2>
+                    <p><a class="quicklink" target="_blank" href="resources/vcard_AVK_web.pdf"><i class="fa fa-address-card-o" aria-hidden="true"></i><label>Visit Card PDF</label></a></p>
+                    <p><a class="quicklink" target="_blank" href="resources/resume_AVK_web.pdf"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><label>Resume PDF</label></a></p>
+                    <p><a class="quicklink" target="_blank" href="resources/portfolio_AVK_pdf.pdf"><i class="fa fa-file-image-o" aria-hidden="true"></i><label>Portfolio PDF</label></a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div id="profile-social">
+                    <h2>My Social Presence<span></span></h2>
+                    <a ng-repeat="social in profile.social" href="{{social.url}}" target="_blank"><i class="{{social.icon}} box-small"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

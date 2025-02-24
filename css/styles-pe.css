@@ -1,0 +1,268 @@
+/* ------------------------ */
+/*    PORTFOLIO EXTENDED    */
+/* ------------------------ */
+html, body{
+    height: initial;
+}
+body{
+    padding: 0 !important;
+    background: #fff !important;
+}
+header{
+    text-align: center;
+    visibility: hidden;
+}
+main{
+    margin: 0 !important;
+    visibility: hidden;
+}
+footer{
+    margin-top: 100px;
+    border-top: 1px solid;
+    padding: 70px 0;
+    visibility: hidden;
+    animation-delay: .5s;
+}
+@keyframes bounceIn {
+    from, 20%, 40%, 60%, 80%, to {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+
+    0% {
+        opacity: 0;
+        transform: scale3d(.3, .3, .3);
+    }
+
+    20% {
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+
+    40% {
+        transform: scale3d(.9, .9, .9);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale3d(1.03, 1.03, 1.03);
+    }
+
+    80% {
+        transform: scale3d(.97, .97, .97);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+    }
+}
+.bounceIn {
+    animation-name: bounceIn;
+    animation-duration: 1s;
+}
+#close-portfolio, #loadContainer{
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 99;
+    color: #fff;
+}
+#close-portfolio{
+    position: absolute;
+}
+
+
+
+/* Loader */
+#loadContainer{
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    transition: transform 1s;
+    text-align: center;
+    margin: 0;
+}
+#loadContainer.closed{
+    transform: translate3d(100%, -100%, 0);
+}
+@keyframes loader {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(180deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    75% {
+        transform: rotate(360deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes loader-inner {
+    0% {
+        height: 0%;
+    }
+
+    25% {
+        height: 0%;
+    }
+
+    50% {
+        height: 100%;
+    }
+
+    75% {
+        height: 100%;
+    }
+
+    100% {
+        height: 0%;
+    }
+}
+.loader {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    border: 2px solid;
+    top: 50%;
+    margin-top: -20px;
+    animation: loader 3s infinite ease;
+    padding: 2px;
+}
+.loader-inner {
+    vertical-align: top;
+    display: inline-block;
+    width: 100%;
+    animation: loader-inner 3s infinite ease-in;
+}
+
+
+
+
+/* ------------------------ */
+/*    ENTRANCE ANIMATION    */
+/* ------------------------ */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -10%, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 2%, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+.fadeInDown{
+    animation-name: fadeInDown;
+    visibility: visible;
+    animation-duration: 2.5s;
+}
+.fadeInUp{
+    animation-name: fadeInUp;
+    visibility: visible;
+    animation-duration: 2.5s;
+}
+
+
+
+/* ------------------------ */
+/*         CAROUSEL         */
+/* ------------------------ */
+.carousel-item{
+    width: 100%;
+}
+.carousel-item a, .carousel-item a span{
+    display: block;
+    width: inherit;
+    height: 600px;
+}
+.carousel-item a span{
+    background-size: cover;
+    background-position: 50% 50%;
+}
+@keyframes carousel-pb{
+    from {
+        transform: translate3d(-100%,0,0);
+    }
+
+    to {
+        transform: none;
+    }
+}
+#carousel-progressbar{
+    height: 3px;
+    width: 100%;
+    margin: 0;
+    border: none;
+    z-index: 11;
+    position: relative;
+    transform: translate3d(-100%,0,0);
+
+}
+#carousel-progressbar.animated{
+    animation-name: carousel-pb;
+    animation-timing-function: ease;
+}
+#carousel-status{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 60px;
+    color: #fff;
+    background: initial;
+    transform: translate3d(-50%,-50%,0);
+    opacity: 0;
+    cursor: pointer;
+}
+.carousel-inner:hover #carousel-status{
+    opacity: 1;
+}
+
+
+
+
+/* ------------------------ */
+/*     PORTFOLIO ITEMS      */
+/* ------------------------ */
+#portfolio section{
+    margin-bottom: 150px;
+}
+#portfolio-prj-info figure img{
+    width: 100%;
+    height: 260px;
+    background-size: cover;
+    background-position: 50% 50%;
+    padding: 10px;
+}
+#portfolio-prj-info .prj-ld{
+    letter-spacing: 0.5px;
+    line-height: 22px;
+    text-rendering: optimizeLegibility;
+}
+#portfolio-items figure img{
+    width: 100%;
+    height: 100%;
+}
+#profile-social{
+    margin-top: 30px;
+}

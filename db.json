@@ -1,0 +1,555 @@
+{
+    "profile": [
+        {
+            "name": "Alessio",
+            "lastName": "Van Keulen",
+            "picture": "",
+            "title": "Seeking the ultimate Web Experience, Elaborating marketing strategies, and blogging about philosophy!",
+            "dob": "May 22, 1988",
+            "shortaddress": "Fairfax, VA",
+            "fulladdress": "",
+            "email": "alessio.vank@gmail.com",
+            "tel": "+1 (202) 2946393",
+            "description": "IT professional with 7 years of experience in Graphic Design, Web Design, Web Development, Marketing & Project Management. Cyber Security graduate. I take pride of being an acute problem-solver, with a focus on improving workflow, team culture and customer satisfaction.",
+            "quote": "",
+            "website": [
+                {
+                    "site": "Logo Design",
+                    "url": "http://www.brandcrowd.com/users/profile/AlexVK"
+                }
+            ],
+            "social": [
+                {
+                    "social": "Linkedin",
+                    "url": "https://www.linkedin.com/in/alessiovankeulen/",
+                    "icon": "fa fa-linkedin"
+                },
+                {
+                    "social": "Medium",
+                    "url": "https://medium.com/@alessiovk",
+                    "icon": "fa fa-medium"
+                },
+                {
+                    "social": "Codepen",
+                    "url": "https://codepen.io/AlexVanK/",
+                    "icon": "fa fa-codepen"
+                }
+            ]
+        }
+    ],
+    "skills": [
+        {
+            "category": "Soft Skills",
+            "skill": [
+                {
+                    "name": "Crativity",
+                    "level": "80"
+                },
+                {
+                    "name": "Curiosity",
+                    "level": "90"
+                },
+                {
+                    "name": "Philosophy",
+                    "level": "90"
+                }
+            ]
+        },
+        {
+            "category": "Design Skills & Office",
+            "skill": [
+                {
+                    "name": "Photoshop",
+                    "level": "75"
+                },
+                {
+                    "name": "Illustrator",
+                    "level": "75"
+                },
+                {
+                    "name": "InDesign",
+                    "level": "75"
+                },
+                {
+                    "name": "Word",
+                    "level": "90"
+                },
+                {
+                    "name": "Excel",
+                    "level": "90"
+                },
+                {
+                    "name": "Power Point",
+                    "level": "90"
+                }
+            ]
+        },
+        {
+            "category": "Programming Skills",
+            "skill": [
+                {
+                    "name": "PHP/MySQL/PDO",
+                    "level": "75"
+                },
+                {
+                    "name": "HTML/HTML5",
+                    "level": "90"
+                },
+                {
+                    "name": "CSS/CSS3",
+                    "level": "90"
+                },
+                {
+                    "name": "JS/JQuery",
+                    "level": "90"
+                },
+                {
+                    "name": "AngularJS",
+                    "level": "70"
+                }
+            ]
+        }
+    ],
+    "experiences": [
+        {
+            "title": "Graphic Designer/Front End Web Developer",
+            "company": "Stratford University",
+            "period": "04.2016 - 05.2017",
+            "description": "Consolidated corporate brand by designing brochures, emails, advertisements, newsletters, reports, infographics, presentations, exhibits, banners, storefronts, direct mail, email campaigns, Eblast, social media content and web pages. Created 20+ different art concepts. Managed the company website by providing optimized code (HTML5, CSS, JavaScript, jQuery, PHP), versatile solutions for Drupal CMS. Offered best practices for performance purposes. Established professional productive relationship with company’s video producers and cooperated in the production of audio, video, web advertisement."
+        },
+        {
+            "title": "Graphic/Logo/Web Designer",
+            "company": "Freelance",
+            "period": "11.2014 - 04.2016",
+            "description": "Designed wide array of graphic products and full stack web applications."
+        },
+        {
+            "title": "Assistant Graphic Designer & Front-End Web Developer",
+            "company": "GOBAG SRL",
+            "period": "07.2012 - 09.2014",
+            "description": "Managed company’s websites WordPress CMS. Organization of stylesheets. Heavy customization of WordPress templates using HTML, PHP, jQuery. Improved brand by designing logos, brochures, flyers, rollups.  Led marketing efforts by maintaining social channels, video editing, email marketing, etc."
+        }
+    ],
+    "education": [
+        {
+            "title": "",
+            "school": "",
+            "period": "",
+            "link": ""
+        }
+    ],
+    "projects": [
+        {
+            "id": 0,
+            "name": "Golden Group",
+            "image": "imgs/portfolio/goldengroup.jpg",
+            "thumbnail": "imgs/portfolio/goldengroup-thumb.jpg",
+            "category": [
+                "All",
+                "Web",
+                "WordPress"
+            ],
+            "label": "Read More",
+            "description": "This was my very first experience with WordPress and professional Web Design in general 5 years ago. The project was the main website of an Italian SE. Today they revamped the site to adhere to more recent design standards. It is always good to improve!",
+            "link": "https://web.archive.org/web/20140208092754/http://www.goldengroup.biz/",
+            "price": "N/A"
+        },
+        {
+            "id": 1,
+            "name": "Roadshow Lavoro",
+            "image": "imgs/portfolio/roadshowlavoro.jpg",
+            "thumbnail": "imgs/portfolio/roadshowlavoro-thumb.jpg",
+            "category": [
+                "All",
+                "Web",
+                "WordPress"
+            ],
+            "label": "Read More",
+            "description": "Along with the previous project (Golden Group), I managed and customized another two websites for the company: roadshowlavoro.com and davidemalaguti.com. The latter I have not designed myself, but I contributed into managing it through WordPress platform.",
+            "link": "http://www.roadshowlavoro.com",
+            "price": "N/A"
+        },
+        {
+            "id": 2,
+            "name": "Italy Is Wonderful",
+            "image": "imgs/portfolio/italyiswonderful.jpg",
+            "thumbnail": "imgs/portfolio/italyiswonderful-thumb.jpg",
+            "category": [
+                "All",
+                "Web"
+            ],
+            "label": "Read More",
+            "description": "This project was a customization of an already existing .NET website for a travel agency business. I must say I was new to .NET but we were able to deliver a professional product.",
+            "link": "https://web.archive.org/web/20160330004102/http://www.italyiswonderful.com/",
+            "price": "N/A"
+        },
+        {
+            "id": 3,
+            "name": "Deluxe Captcha",
+            "image": "imgs/portfolio/deluxecaptcha.jpg",
+            "thumbnail": "imgs/portfolio/deluxecaptcha-thumb.jpg",
+            "category": [
+                "All",
+                "Web",
+                "Misc"
+            ],
+            "label": "Read More",
+            "description": "This was a tough learning experience. I know, everybody hates Captchas, that's why I tried to make a more fun version of it. This is a WordPress plugin I developed from scratch in my free time. Is Based on PHP and Javascript.",
+            "link": "https://wordpress.org/plugins/deluxe-captcha/",
+            "price": "N/A"
+        },
+        {
+            "id": 4,
+            "name": "HITS",
+            "image": "imgs/portfolio/healthinformationtechnologysolutions.jpg",
+            "thumbnail": "imgs/portfolio/healthinformationtechnologysolutions-thumb.jpg",
+            "category": [
+                "All",
+                "Web",
+                "WordPress"
+            ],
+            "label": "Read More",
+            "description": "Here I built a website for an economically-disadvantaged woman-owned Small Business. The website on the WordPress platform in compliance with 508 standards. Responsive and mobile friendly, offers a great UX.",
+            "link": "http://www.healthinformationtechnologysolutions.com/hits/about/",
+            "price": "N/A"
+        },
+        {
+            "id": 5,
+            "name": "Poetry Is Wonderful",
+            "image": "imgs/portfolio/poetryiswonderful.jpg",
+            "thumbnail": "imgs/portfolio/poetryiswonderful-thumb.jpg",
+            "category": [
+                "All",
+                "Web"
+            ],
+            "label": "Read More",
+            "description": "This website was a part of a blogging platform project I decided to develop in my free time. Users were able upload their own poetries and a voice-recorded version of them. Site is currently offline, but the idea is still there...",
+            "link": "",
+            "price": "N/A"
+        },
+        {
+            "id": 6,
+            "name": "Ark Shield",
+            "image": "imgs/portfolio/arkshield.jpg",
+            "thumbnail": "imgs/portfolio/arkshield-thumb.jpg",
+            "category": [
+                "All",
+                "Brand"
+            ],
+            "label": "Read More",
+            "description": "Here I was given a sketch, some few requirements about a shield and a sword. The rest is creative interpretation of the designer.",
+            "link": "",
+            "price": "SOLD"
+        },
+        {
+            "id": 7,
+            "name": "Our Secret Ingredient",
+            "image": "imgs/portfolio/oursecretingredient.jpg",
+            "thumbnail": "imgs/portfolio/oursecretingredient-thumb.jpg",
+            "category": [
+                "All",
+                "Web",
+                "WordPress"
+            ],
+            "label": "Read More",
+            "description": "This project was for a Chef that launched her own Personal-Chef business. The WordPress platform would be the interface between the customers and the business for orders and appointments!",
+            "link": "http://www.oursecretingredient.com",
+            "price": "N/A"
+        },
+        {
+            "id": 8,
+            "name": "Matteo Venturi",
+            "image": "imgs/portfolio/matteoventuri.jpg",
+            "thumbnail": "imgs/portfolio/matteoventuri-thumb.jpg",
+            "category": [
+                "All",
+                "Web",
+                "WordPress"
+            ],
+            "label": "Read More",
+            "description": "This project features an emerging Italian rock artis who contacted me to build his website. Together we created a brand, a social media presence and a responsive Wordpress website of course!",
+            "link": "http://www.matteoventuri.net",
+            "price": "N/A"
+        },
+        {
+            "id": 9,
+            "name": "Honeymoon",
+            "image": "imgs/portfolio/honeymoon.jpg",
+            "thumbnail": "imgs/portfolio/honeymoon-thumb.jpg",
+            "category": [
+                "All",
+                "Brand"
+            ],
+            "label": "Read More",
+            "description": "Perfect logo for ballrooms, clubs, theaters, etc. Logo is open for modifications, and could eventually fit also restaurants and hotels. The concept of the logo aims to a classy environment, and a romantic atmosphere. Colors can be adjusted by the business to fit their needs, I am at disposition. I will create a corporate identity for you.",
+            "link": "http://www.brandcrowd.com/logo-design/details/153279",
+            "price": "$300"
+        },
+        {
+            "id": 10,
+            "name": "Pencil",
+            "image": "imgs/portfolio/pencil.jpg",
+            "thumbnail": "imgs/portfolio/pencil-thumb.jpg",
+            "category": [
+                "All",
+                "Brand"
+            ],
+            "label": "Read More",
+            "description": "The logo is a conjunction of a pen and a pencil. I was inspired by some of those amazing artists who can draw just about anything with only a pen or a pencil. The main theme would be orange for energy and warmth with some violet/purple for creativity. This logo is meant for graphic/design or creative companies.",
+            "link": "http://www.brandcrowd.com/logo-design/details/152619",
+            "price": "$300"
+        },
+        {
+            "id": 11,
+            "name": "Record Cakes",
+            "image": "imgs/portfolio/recordcakes.jpg",
+            "thumbnail": "imgs/portfolio/recordcakes-thumb.jpg",
+            "category": [
+                "All",
+                "Brand"
+            ],
+            "label": "Read More",
+            "description": "Perfect logo for bakery and pastry shops. Can fit nicely also bar, lounges, pubs, etc. The idea is to mix a modern style with some retro taste. You can start your business with this new brand. Colors can be adjusted by the business to fit their needs. I will create a corporate identity you can be proud of.",
+            "link": "http://www.brandcrowd.com/logo-design/details/152951",
+            "price": "$1500"
+        },
+        {
+            "id": 12,
+            "name": "Stratford 2x2 Banner",
+            "image": "imgs/portfolio/stratfordinternationalbanner.jpg",
+            "thumbnail": "imgs/portfolio/stratfordinternationalbanner-thumb.jpg",
+            "category": [
+                "All",
+                "Print"
+            ],
+            "label": "Read More",
+            "description": "I designed this 2'x2' for Stratford University. It was used abroad to describe the international presence of the school.",
+            "link": "",
+            "price": "N/A"
+        },
+        {
+            "id": 13,
+            "name": "Power Forward Folder",
+            "image": "imgs/portfolio/folder-powerforward.jpg",
+            "thumbnail": "imgs/portfolio/folder-powerforward-thumb.jpg",
+            "category": [
+                "All",
+                "Print"
+            ],
+            "label": "Read More",
+            "description": "Another product for Stratford University. Simple pocket folder with a POWER FORWARD brand.",
+            "link": "",
+            "price": "N/A"
+        },
+        {
+            "id": 14,
+            "name": "Seek Unity",
+            "image": "imgs/portfolio/seekunity.jpg",
+            "thumbnail": "imgs/portfolio/seekunity-thumb.jpg",
+            "category": [
+                "All",
+                "Misc"
+            ],
+            "label": "Read More",
+            "description": "Some sketches for a tshirt design contest at Stratford University.",
+            "link": "",
+            "price": "N/A"
+        },
+        {
+            "id": 15,
+            "name": "Career Fair",
+            "image": "imgs/portfolio/careerfair.jpg",
+            "thumbnail": "imgs/portfolio/careerfair-thumb.jpg",
+            "category": [
+                "All",
+                "Print"
+            ],
+            "label": "Read More",
+            "description": "US Letter flyer for a career fair event held by Stratford University",
+            "link": "",
+            "price": "N/A"
+        },
+        {
+            "id": 16,
+            "name": "Stratford Scholarship",
+            "image": "imgs/portfolio/scholarship.jpg",
+            "thumbnail": "imgs/portfolio/scholarship-thumb.jpg",
+            "category": [
+                "All",
+                "Print"
+            ],
+            "label": "Read More",
+            "description": "This is a simple hand out for Stratford's first scholarship. It is a US Letter format.",
+            "link": "",
+            "price": "N/A"
+        },
+        {
+            "id": 17,
+            "name": "Stratford Scholarship",
+            "image": "imgs/portfolio/pyramidcake.jpg",
+            "thumbnail": "imgs/portfolio/pyramidcake-thumb.jpg",
+            "category": [
+                "All",
+                "Print"
+            ],
+            "label": "Read More",
+            "description": "Outdoor booth banner for Stratford's tallest pyramid cake Guinnes World Records attempt.",
+            "link": "",
+            "price": "N/A"
+        },
+        {
+            "id": 18,
+            "name": "Commencement Brochure",
+            "image": "imgs/portfolio/stratfordcommencement.jpg",
+            "thumbnail": "imgs/portfolio/stratfordcommencement-thumb.jpg",
+            "category": [
+                "All",
+                "Print"
+            ],
+            "label": "Read More",
+            "description": "A4 Paper brochure for Stratford's Commencement ceremony of 2017. Yes, I was in that ceremony too =)",
+            "link": "",
+            "price": "N/A"
+        },
+        {
+            "id": 19,
+            "name": "Cyber Security 3fold",
+            "image": "imgs/portfolio/cybersecurity.jpg",
+            "thumbnail": "imgs/portfolio/cybersecurity-thumb.jpg",
+            "category": [
+                "All",
+                "Print"
+            ],
+            "label": "Read More",
+            "description": "Just one tri-fold brochure dedicated to a Cyber Security certification program Stratford University is offering.",
+            "link": "",
+            "price": "N/A"
+        },
+        {
+            "id": 20,
+            "name": "Eblast - Instagram Contest",
+            "image": "imgs/portfolio/eblast-instagramcontest.jpg",
+            "thumbnail": "imgs/portfolio/eblast-instagramcontest-thumb.jpg",
+            "category": [
+                "All",
+                "Eblast"
+            ],
+            "label": "Read More",
+            "description": "The company I used to work for back in Italy, created this Instagram contest, for which I developed an Email Blast using plain HTML and CSS. Click on \"See Project\" to see the full email(Language is Italian).",
+            "link": "resources/eblast-instagram-contest.htm",
+            "price": "N/A"
+        },
+        {
+            "id": 21,
+            "name": "Eblast - Dreams Course",
+            "image": "imgs/portfolio/eblast-dreams.jpg",
+            "thumbnail": "imgs/portfolio/eblast-dreams-thumb.jpg",
+            "category": [
+                "All",
+                "Eblast"
+            ],
+            "label": "Read More",
+            "description": "General Eblast describing the company's CEO training course. Email Blast developed from scratch using plain HTML and CSS. Click on \"See Project\" to see the full email(Language is Italian).",
+            "link": "resources/eblast-dreams.htm",
+            "price": "N/A"
+        },
+        {
+            "id": 22,
+            "name": "NAPA DC FLY-IN",
+            "image": "imgs/portfolio/napadcflyin.png",
+            "thumbnail": "imgs/portfolio/napadcflyin-thumb.png",
+            "category": [
+                "All",
+                "Web",
+                "WordPress"
+            ],
+            "label": "Read More",
+            "description": "A conference to engage with key federal policy makers. Advocate for legislative and regulatory policy that affects the employer-sponsored retirement plan industry.",
+            "link": "http://napadcflyin.org/",
+            "price": "N/A"
+        },
+        {
+            "id": 23,
+            "name": "One Page Applications",
+            "image": "imgs/portfolio/opas.jpg",
+            "thumbnail": "imgs/portfolio/opas-thumb.jpg",
+            "category": [
+                "All",
+                "Web",
+                "WordPress"
+            ],
+            "label": "Read More",
+            "description": "Five one page applications. These are sites that feature all the content in the front page. Rule of thumb here is: more scrolling, less clicking. Find all sites at <a href='http://www.asppaannual.org' target='_blank'>ANNUAL</a> - <a href='http://www.tpasalessummit.org' target='_blank'>TPA</a> - <a href='http://www.napanqdcforum.org' target='_blank'>NQDCFORUM</a> - <a href='http://napadcflyin.org/' target='_blank'>DCFLYIN</a> - <a href='http://www.ntsa403bsummit.org' target='_blank'>NTSA403B</a> (Website content may change over time).",
+            "link": "http://napanqdcforum.org",
+            "price": "N/A"
+        },
+        {
+            "id": 24,
+            "name": "ASPPA Regionals",
+            "image": "imgs/portfolio/aspparegionals.jpg",
+            "thumbnail": "imgs/portfolio/aspparegionals-thumb.jpg",
+            "category": [
+                "All",
+                "Web",
+                "WordPress"
+            ],
+            "label": "Read More",
+            "description": "Find the 2018 Eastern reagional conferences Philadelphia, Cincinnati. This project features two mirrored WordPress websites, one for each location.",
+            "link": "http://aspparegionals.org/home",
+            "price": "N/A"
+        },
+        {
+            "id": 25,
+            "name": "Nature is Wonderful",
+            "image": "imgs/portfolio/nature_wireframing.jpg",
+            "thumbnail": "imgs/portfolio/nature_wireframing-thumb.jpg",
+            "category": [
+                "All",
+                "Web",
+                "Misc"
+            ],
+            "label": "Read More",
+            "description": "Website developed from low-fidelity wireframing, all the way up to final product. Click on \"See Project\" to see the final website.",
+            "link": "http://natureiswonderful.eu5.net",
+            "price": "N/A"
+        },
+        {
+            "id": 26,
+            "name": "Animated GIFs",
+            "image": "imgs/portfolio/gifs/600x200-animation-v2.gif",
+            "thumbnail": "imgs/portfolio/gifs/gifs-thumb.jpg",
+            "category": [
+                "All",
+                "Web",
+                "Misc"
+            ],
+            "label": "Read More",
+            "description": "An animated GIF created in photoshop. Click on \"See Project\" to see my GIF collection. More coming soon.",
+            "link": "/portfolio-extended-gifs.html",
+            "price": "N/A"
+        }
+    ],
+    "projcat": [
+        {
+            "category": "All"
+        },
+        {
+            "category": "Print"
+        },
+        {
+            "category": "Brand"
+        },
+        {
+            "category": "Web"
+        },
+        {
+            "category": "Eblast"
+        },
+        {
+            "category": "WordPress"
+        },
+        {
+            "category": "Misc"
+        }
+    ]
+}

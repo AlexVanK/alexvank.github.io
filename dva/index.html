@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+
+<html>
+	<meta charset="utf-8" />
+
+	<head>
+		<title>A Visual Approach Towards Food-Ingredients Ranking & Classification</title>
+
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+		<script src="https://d3js.org/d3.v6.min.js"></script>
+		<script src="https://unpkg.com/d3-dsv@3.0.1/dist/d3-dsv.min.js"></script>
+
+		<!--
+         Developed by: Alessio Van Keulen
+         https://www.linkedin.com/in/alessiovankeulen/
+         GTID: 903739771         
+      -->
+
+		<style>
+			/************************/
+			/*   GENERAL STYLING    */
+			/************************/
+			:root {
+				--heatmap-w: 240px;
+				--heatmap-m: 30px;
+			}
+			html,
+			body {
+				font-size: 14px;
+				height: 100vh;
+				overflow: hidden;
+			}
+
+			#notifications {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 400px;
+				height: 100%;
+				background-color: var(--bs-light);
+				text-align: right;
+				z-index: 99;
+			}
+			#notifications {
+				transition: transform ease-in 0.3s;
+				transform: translateX(calc(-100% + 24px));
+			}
+			#notifications.in {
+				transform: none;
+			}
+			#notifications h6 {
+				position: relative;
+				cursor: pointer;
+				transition: transform ease-in 0.3s, top ease-in 0.3s, right ease-in 0.3s;
+				transform: rotate(-90deg);
+				transform-origin: bottom right;
+			}
+			#notifications.in h6 {
+				transform: none;
+				top: 10px;
+				right: 6px;
+			}
+
+			#predictmodal input {
+				outline: none !important;
+			}
+			#predictmodal table {
+				width: 100%;
+				table-layout: fixed;
+				background-color: rgba(var(--bs-light-rgb) 0.25);
+			}
+			#predictmodal table tr th {
+				vertical-align: bottom;
+				text-align: end;
+				color: #fff;
+				padding-right: 1em;
+			}
+
+			#gestalt {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100vh;
+				z-index: 99999;
+				opacity: 0;
+				visibility: hidden;
+				transition: visibility 0.2s, opacity 0.2s;
+				background-color: #000;
+			}
+			#gestalt.in {
+				visibility: visible;
+				opacity: 1;
+			}
+
+			/************************/
+			/*       HEATMAP        */
+			/************************/
+			#heatmap {
+				font-size: 0;
+			}
+			#heatmap .block {
+				display: inline-block;
+				width: calc(var(--heatmap-w) / 11);
+				height: calc(var(--heatmap-w) / 11);
+				transition: transform 0.3s, box-shadow 0.3s;
+				cursor: pointer;
+			}
+			#heatmap .block:hover {
+				transform: scale(2);
+				box-shadow: 0 0.5rem 1rem rgba(33, 37, 41, 0.15);
+				border: 1px solid;
+			}
+
+			[type="radio"]:checked + label {
+				text-decoration: underline;
+			}
+
+			/************************/
+			/*    NETWORK GRAPH     */
+			/************************/
+			svg {
+				/*shape-rendering: optimizeSpeed;
+			         text-rendering: optimizeSpeed;*/
+			}
+
+			#edges * {
+				fill: none;
+				stroke: orange;
+				stroke-width: 1px;
+				opacity: 0.2;
+			}
+			#edges.stroke-0 * {
+				stroke-width: 0;
+			}
+			#edges.stroke-05 * {
+				stroke-width: 0.5px;
+			}
+			#edges.stroke-1 * {
+				stroke-width: 1px;
+			}
+			#edges.stroke-15 * {
+				stroke-width: 1.5px;
+			}
+			#edges.stroke-2 * {
+				stroke-width: 2px;
+			}
+
+			#nodes > g.highlighted circle {
+				fill: var(--bs-primary) !important;
+				outline: 2px dashed var(--bs-primary);
+				outline-offset: 2px;
+				border-radius: 50%;
+			}
+
+			circle {
+				/*stroke: black;
+			         stroke-width: 0.75px;*/
+				cursor: grab;
+			}
+			circle:active {
+				cursor: grabbing;
+			}
+
+			circle + text {
+				fill: #000;
+				font: 10px sans-serif;
+				pointer-events: none;
+				text-transform: capitalize;
+			}
+
+			#nodes.hide_nodenames text {
+				display: none;
+			}
+			#nodes.hide_noderadius circle {
+				r: 4;
+			}
+			#nodes.hide_nodecolor circle {
+				fill: gray !important;
+			}
+			#nodes.hide_node circle {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container-fluid h-100">
+			<div class="row h-100">
+				<main class="col-9 border-start text-center" id="networkGraph"></main>
+				<aside class="col-3 py-4 bg-light h-100 overflow-y-scroll" id="frequencyChart">
+					<h4 class="text-center mb-4">A Visual Approach Towards Food-Ingredients Ranking & Classification</h4>
+					<p>
+						This application will assist your grocery shopping habits by helping you classify and rank your usual food procuts. You will be given user-friendly results organized in our at-a-glance reports.
+						<small><a data-bs-toggle="collapse" href="#introCollapse" role="button" aria-expanded="false" aria-controls="introCollapse">[read more]</a></small>
+					</p>
+					<div class="collapse" id="introCollapse">
+						<div>
+							<p>The information you will find below is built on a sample dataset of an average grocery store: you are welcome to load different subset of the original data, to see how the results change. The avaiable reports are:</p>
+							<ul>
+								<li><em>Network-Graph</em> - Describing the relationship between ingredients: the larger an ingredient node, the more connections it has with other ingredient nodes.</li>
+								<li><em>Statistics</em> - Condensing ingredient meta data.</li>
+								<li><em>Heatmap</em> - Illustrates the ingredient frequency compared to the total count.</li>
+								<li><em>Sampled Food Items</em> - Allowing you to obtain nutritional value of a food product as well as highlighting the relationship between ingrdients.</li>
+								<li><em>Health Score Prediction</em> - AI Machine Learning algorithm able to predict a healh score based on your custom nutritional values.</li>
+							</ul>
+							<a href="CSE6242-Team125-progress_report.pdf" target="_blank"><i class="bi bi-filetype-pdf me-2"></i> See Full Project Paper</a>
+						</div>
+					</div>
+
+					<hr />
+					<div class="accordion accordion-flush" id="accordionFlushExample">
+						<div class="accordion-item bg-transparent">
+							<h2 class="accordion-header" id="flush-headingOne">
+								<button class="accordion-button bg-transparent focus-ring focus-ring-light" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"><strong>Data Subsets</strong></button>
+							</h2>
+							<div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne">
+								<div class="accordion-body bg-white py-4">
+									<p>You can load differet chunks of the original dataset to see how the visualization changes.</p>
+									<select id="data_selector" class="form-select" aria-label="Default select example">
+										<option selected>Select Subset of Data</option>
+										<option value="all">Full Data</option>
+										<option value="top50">Top 50%</option>
+										<option value="top30">Top 30%</option>
+										<option value="top20">Top 20%</option>
+										<option value="top10">Top 10%</option>
+									</select>
+									<p class="mt-3 text-danger"><i class="bi bi-exclamation-triangle-fill me-3"></i> Larger samples may affect your browser performance!</p>
+								</div>
+							</div>
+						</div>
+						<div class="accordion-item bg-transparent">
+							<h2 class="accordion-header pt-4" id="flush-headingTwo">
+								<button class="accordion-button bg-transparent focus-ring focus-ring-light collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"><strong>Statistics</strong></button>
+							</h2>
+							<div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo">
+								<div class="accordion-body bg-white py-4">
+									<p>Here are some general statistics calculated on the current subset of the orginal data file.</p>
+
+									<table class="table table-sm" style="--bs-border-width: 0">
+										<tr>
+											<th>Unique Ingredients</th>
+											<td id="ingr_count"></td>
+										</tr>
+										<tr>
+											<th class="border-0 pb-0">Mode Ingredient</th>
+											<td id="ingr_mode" class="text-capitalize border-0 pb-0"></td>
+										</tr>
+										<tr>
+											<th class="pt-0"><i class="bi bi-arrow-return-right ms-4"></i> (Frequency)</th>
+											<td id="ingr_mode_f" class="text-capitalize pt-0"></td>
+										</tr>
+										<tr>
+											<th>Median Ingredient(s)</th>
+											<td id="ingr_median" class="text-capitalize"></td>
+										</tr>
+										<tr>
+											<th class="border-0 pb-0">Rarest Ingredient</th>
+											<td id="ingr_rarest" class="text-capitalize border-0 pb-0"></td>
+										</tr>
+										<tr>
+											<th class="pt-0"><i class="bi bi-arrow-return-right ms-4"></i> (Frequency)</th>
+											<td id="ingr_rarest_f" class="text-capitalize pt-0"></td>
+										</tr>
+									</table>
+									<p class="mt-3 text-info"><i class="bi bi-info-circle-fill me-3"></i> Note: this report is generated on the current data chunk. If you change the subset above, this report will update.</p>
+								</div>
+							</div>
+						</div>
+						<div class="accordion-item bg-transparent">
+							<h2 class="accordion-header pt-4" id="flush-headingThree">
+								<button class="accordion-button bg-transparent focus-ring focus-ring-light collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"><strong>Heatmap</strong></button>
+							</h2>
+							<div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree">
+								<div class="accordion-body bg-white py-4">
+									<p>The below chart represents the current data set ingredient's frequency through a color saturation heatmap. The darker the hue, the more frequent an ingredient is. This is also reflected in the network-graph by the radius of the ingredient node.</p>
+									<div class="d-flex justify-content-between my-3">
+										Sort By:
+										<div>
+											<span>
+												<input class="form-check-input d-none" type="radio" name="sortradio" id="flexRadioDefault1" value="count" />
+												<label class="form-check-label" role="button" for="flexRadioDefault1"> Count </label>
+											</span>
+											-
+											<span>
+												<input class="form-check-input d-none" type="radio" name="sortradio" id="flexRadioDefault2" value="name" />
+												<label class="form-check-label" role="button" for="flexRadioDefault2"> Name </label>
+											</span>
+										</div>
+									</div>
+									<div id="heatmap"></div>
+									<p class="mt-3 text-info"><i class="bi bi-info-circle-fill me-3"></i> Note: this report is generated on the current data chunk. If you change the subset above, this report will update.</p>
+								</div>
+							</div>
+						</div>
+						<div class="accordion-item bg-transparent">
+							<h2 class="accordion-header pt-4" id="flush-headingFour">
+								<button class="accordion-button bg-transparent focus-ring focus-ring-light collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour"><strong>Sampled Food Items</strong></button>
+							</h2>
+							<div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour">
+								<div class="accordion-body bg-white py-4">
+									<p>Here is a sample of 12 food products. If you click on each product you will get find related nutrional values and health score.</p>
+									<div id="foodproducts" class="text-capitalize"></div>
+
+									<p class="mt-3 text-info"><i class="bi bi-info-circle-fill me-3"></i> Note: this report is generated on the full data set only. It will not change if you select a different data subset.</p>
+								</div>
+							</div>
+						</div>
+						<div class="accordion-item bg-transparent">
+							<h2 class="accordion-header pt-4" id="flush-headingFive">
+								<button class="accordion-button bg-transparent focus-ring focus-ring-light collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive"><strong>Health Score Prediction</strong></button>
+							</h2>
+							<div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive">
+								<div class="accordion-body bg-white py-4">
+									<p>If you're interested into calculating the health score and <a href="https://www.fao.org/3/ca5644en/ca5644en.pdf" target="_blank">NOVA</a> class for your own nutritional values you can use our AI based Machine Learning algorirthm.</p>
+									<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#predictmodal">Get My Score</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</aside>
+			</div>
+		</div>
+
+		<section id="notifications" class="bg-light border-end p-1 text-end h-100 overflow-hidden in">
+			<h6>NOTIFICATIONS <i class="bi bi-chat-left-text-fill ms-2 text-primary pe-none"></i></h6>
+			<article class="d-flex flex-column mt-5 p-4 text-start">
+				<div class="alert alert-warning fade show rounded-0 border-left alert-dismissible" role="alert">
+					<div>
+						<strong>Developed By: TEAM #125</strong><br />
+						<a href="https://www.linkedin.com/in/alessiovankeulen/" target="_blank">Alessio Van Keulen <i class="bi bi-linkedin"></i></a><br />
+						<a href="https://www.linkedin.com/in/feihui/" target="_blank">Fei Hui <i class="bi bi-linkedin"></i></a><br />
+						<a href="https://www.linkedin.com/in/yuxin-liu-sheena/" target="_blank">Liu Yuxin <i class="bi bi-linkedin"></i></a><br />
+						<a href="https://www.linkedin.com/in/rutuja-patil-b2804413b/" target="_blank">Rutuja Patil <i class="bi bi-linkedin"></i></a><br />
+						<a target="_blank">Sufian Suwarman</a><br />
+					</div>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+
+				<div class="alert alert-danger fade show rounded-0 border-left alert-dismissible" role="alert">
+					<div>
+						<strong>Careful <i class="bi bi-exclamation-triangle-fill"></i></strong><br />
+						Large data may severly impact the performance of your browser. Keep that into consideration when switching between subsets.
+					</div>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+
+				<div class="alert alert-success fade show rounded-0 border-left alert-dismissible" role="alert">
+					<div>
+						<strong>Ingredients Network-Graph <i class="bi bi-info-circle-fill"></i></strong><br />
+						From a dataset of food products from we've extracted all the ingredients and their relationship with one another. We've built a network-graph where the nodes represent the ingredient, and the edges represent the connection between two ingredients.
+					</div>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+
+				<div class="alert alert-info fade show rounded-0 border-left alert-dismissible" role="alert">
+					<div>
+						<strong>Network-Graph Controls <i class="bi bi-joystick"></i></strong><br />
+						You can drang-n-drop each node, and reorganize the structure to your preference!
+					</div>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+
+				<div class="alert alert-success fade show rounded-0 border-left alert-dismissible" role="alert">
+					<div>
+						<strong>Heat Map of ingredient Frequency <i class="bi bi-info-circle-fill"></i></strong><br />
+						We've complemented the network-graph with a heat-map illustrating the frequency of each ingredient with different gradiations af a the same hue.
+					</div>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+
+				<div class="alert alert-info fade show rounded-0 border-left alert-dismissible" role="alert">
+					<div>
+						<strong>Heat-Map Controls <i class="bi bi-joystick"></i></strong><br />
+						By default, the ingredients list heat-map is sorted by the ingredient name. You can change this to sort the map by ingredient frequency. Hovering each tassel in the color-map will highlight the related node in the network-graph.
+					</div>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			</article>
+		</section>
+
+		<small id="ng-controls" class="position-absolute bottom-0 left-0 ms-5 mb-3 p-3 bg-white shadow">
+			<p><strong>Network-Graph Controls</strong></p>
+			<div class="form-check form-switch ps-0 d-flex justify-content-between">
+				<label class="form-check-label" for="hide_nodenames">Toggle Node Names</label>
+				<input class="form-check-input" type="checkbox" role="switch" id="hide_nodenames" />
+			</div>
+			<div class="form-check form-switch ps-0 d-flex justify-content-between">
+				<label class="form-check-label" for="hide_noderadius">Toggle Node Radius</label>
+				<input class="form-check-input" type="checkbox" role="switch" id="hide_noderadius" />
+			</div>
+			<div class="form-check form-switch ps-0 d-flex justify-content-between">
+				<label class="form-check-label" for="hide_nodecolor">Toggle Node Saturation</label>
+				<input class="form-check-input" type="checkbox" role="switch" id="hide_nodecolor" />
+			</div>
+			<div class="form-check form-switch ps-0 d-flex justify-content-between">
+				<label class="form-check-label" for="hide_node">Toggle Node Visibility</label>
+				<input class="form-check-input" type="checkbox" role="switch" id="hide_node" />
+			</div>
+			<div class="form-check form-switch ps-0 d-flex justify-content-between">
+				<label for="edge_tichkness" class="form-label">Edge Thickness</label>
+				<input type="range" class="form-range w-50" min="0" max="2" step="0.5" id="edge_tichkness" value="1" />
+			</div>
+			<div class="form-check form-switch ps-0 d-flex justify-content-between align-items-center">
+				<label for="initial_spread" class="form-label"
+					>Initial Spread<br />
+					<small class="text-danger">requires reload</small>
+				</label>
+				<input type="number" class="form-control w-auto" min="0" max="800" id="initial_spread" value="300" />
+				<i class="bi bi-arrow-clockwise fs-4" onclick="window.location.reload()" role="button"></i>
+			</div>
+		</small>
+
+		<div class="modal fade" id="foodmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog rounded-0">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" data-for="prod_name"></h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<p class="text-center">
+							<img data-for="img_url" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" class="w-50" />
+						</p>
+
+						<h6>Nutritional Values</h6>
+						<table class="table table-sm table-bordered">
+							<tr>
+								<th>Salt</th>
+								<td data-for="salt"></td>
+							</tr>
+							<tr>
+								<th>Sugar</th>
+								<td data-for="sugar"></td>
+							</tr>
+							<tr>
+								<th>Fat</th>
+								<td data-for="fat"></td>
+							</tr>
+							<tr>
+								<th>Saturated Fat</th>
+								<td data-for="sat_fat"></td>
+							</tr>
+							<tr>
+								<th>Calories (Kcal)</th>
+								<td data-for="kcal"></td>
+							</tr>
+						</table>
+
+						<h6>Ingredients</h6>
+						<p class="text-capitalize" data-for="ingredients"></p>
+
+						<h6>Scores</h6>
+						<div class="d-flex align-items-center">
+							<img data-for="nova" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" height="60px" width="auto" />
+							<img data-for="nutri_score" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" height="60px" width="auto" class="ms-3" />
+						</div>
+
+						<hr />
+						Read more about: <a href="https://www.fao.org/3/ca5644en/ca5644en.pdf" class="text-info" target="_blank">NOVA Food Classification System</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="predictmodal" tabindex="-1">
+			<div class="modal-dialog modal-fullscreen rouded-0">
+				<div class="modal-content text-white bg-dark bg-opacity-75">
+					<div class="modal-header border-0 bg-transparent">
+						<button type="button" class="btn-close bg-white me-5" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body d-flex align-items-center justify-content-center">
+						<div class="text-end me-5">
+							<h5>Test some canned products!</h5>
+							<div id="cannedproducts">
+								<a href="#" class="text-white" data-load="yogurt_sugarfree">Sugarfree Yogurt</a><br />
+								<a href="#" class="text-white" data-load="nutella">Nutella</a><br />
+								<a href="#" class="text-white" data-load="banana">Banana</a><br /><br />
+								<a href="#" class="text-white mt-4" data-load="reset">[Reset Form]</a><br />and try your own values!<br />
+								<i class="bi bi-arrow-right"></i>
+							</div>
+						</div>
+						<div class="bg-white bg-opacity-25 w-25 p-4 me-5">
+							<form id="ai-calculator">
+								<table>
+									<tr>
+										<th>Calories</th>
+										<td><input type="number" data-param="calories" class="bg-transparent border-white border-0 border-bottom fs-1 text-white w-100" min="0" max="1000" step="0.1" required /></td>
+									</tr>
+									<tr>
+										<th>Water</th>
+										<td><input type="number" data-param="water" class="bg-transparent border-white border-0 border-bottom fs-1 text-white w-100" min="0" max="1000" step="0.1" required /></td>
+									</tr>
+									<tr>
+										<th>Fatty Acid</th>
+										<td><input type="number" data-param="fatty_acid" class="bg-transparent border-white border-0 border-bottom fs-1 text-white w-100" min="0" max="1000" step="0.1" required /></td>
+									</tr>
+									<tr>
+										<th>Carbohydrate</th>
+										<td><input type="number" data-param="carb" class="bg-transparent border-white border-0 border-bottom fs-1 text-white w-100" min="0" max="1000" step="0.1" required /></td>
+									</tr>
+									<tr>
+										<th>Saturated Fats</th>
+										<td><input type="number" data-param="sat_fat" class="bg-transparent border-white border-0 border-bottom fs-1 text-white w-100" min="0" max="1000" step="0.1" required /></td>
+									</tr>
+									<tr>
+										<th>Sugar</th>
+										<td><input type="number" data-param="sugar" class="bg-transparent border-white border-0 border-bottom fs-1 text-white w-100" min="0" max="1000" step="0.1" required /></td>
+									</tr>
+									<tr>
+										<th>Potassium</th>
+										<td><input type="number" data-param="Potassium" class="bg-transparent border-white border-0 border-bottom fs-1 text-white w-100" min="0" max="1000" step="0.1" required /></td>
+									</tr>
+									<tr>
+										<th>Fiber</th>
+										<td><input type="number" data-param="fiber" class="bg-transparent border-white border-0 border-bottom fs-1 text-white w-100" min="0" max="1000" step="0.1" required /></td>
+									</tr>
+									<tr>
+										<th>Protein</th>
+										<td><input type="number" data-param="protein" class="bg-transparent border-white border-0 border-bottom fs-1 text-white w-100" min="0" max="1000" step="0.1" required /></td>
+									</tr>
+								</table>
+							</form>
+						</div>
+						<div class="ms-5 text-center" id="predicted_score" style="width: 300px">
+							<div id="smiley" class="text-center" style="font-size: 200px; height: 300px; line-height: 300px"></div>
+							<div id="feedback"></div>
+							<button type="submit" form="ai-calculator" value="Update" class="btn btn-outline-light d-flex align-items-center m-auto" role="button"><span class="fs-1 text-uppercase">Calculate</span> <i class="bi bi-robot display-3 ms-3"></i></button>
+						</div>
+
+						<div id="gestalt" class="d-flex align-items-center flex-column justify-content-center">
+							<img src="https://cdn.dribbble.com/users/905680/screenshots/9708179/media/b83671e9309cb3eb1d9f2b0381e0f907.gif" width="300px" />
+							<h2 class="text-uppercase display-1 opacity-50">Querying the Gestalt...</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="scripts.js"></script>
+	</body>
+</html>

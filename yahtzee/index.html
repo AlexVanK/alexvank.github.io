@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>HTML 5 Boilerplate</title>
+	<style>
+		@font-face {
+			font-family: "Paytone One";
+			font-style: normal;
+			font-weight: 400;
+			src: url(https://fonts.gstatic.com/s/paytoneone/v21/0nksC9P7MfYHj2oFtYm2ChTtgP4.ttf) format("truetype");
+		}
+
+		@font-face {
+			font-family: "Roboto";
+			font-style: normal;
+			font-weight: 400;
+			src: url(https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxP.ttf) format("truetype");
+		}
+
+		@font-face {
+			font-family: "Roboto";
+			font-style: normal;
+			font-weight: 700;
+			src: url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfBBc9.ttf) format("truetype");
+		}
+
+		@font-face {
+			font-family: "Indie Flower";
+			font-style: normal;
+			font-weight: 400;
+			src: url(https://fonts.gstatic.com/s/indieflower/v17/m8JVjfNVeKWVnh3QMuKkFcZVaUuC.ttf) format("truetype");
+		}
+
+		:root {
+			font: normal normal 9pt/1.25 Roboto;
+			-webkit-font-kerning: normal;
+			font-kerning: normal;
+		}
+
+		@media screen {
+			:root {
+				min-height: 100vh;
+				perspective: 12in;
+				background-color: #277714;
+				background-image: radial-gradient(ellipse at 50% 25%, transparent, #1a2005);
+			}
+		}
+
+		body {
+			line-height: inherit;
+		}
+
+		section {
+			display: flex;
+			align-items: flex-start;
+			padding: 2em;
+		}
+
+		.yahtzee {
+			width: 5in;
+			margin-right: 2em;
+		}
+
+		.font-xs,
+		.yahtzee__score-card .how-to-score,
+		.desc .alt {
+			font-size: 0.6rem;
+		}
+
+		.font-sm,
+		.yahtzee__score-card .head {
+			font-size: 0.8rem;
+		}
+
+		.font-bold,
+		.yahtzee__score-card .head,
+		.desc {
+			font-weight: 700;
+		}
+
+		.pad-regular,
+		.yahtzee__score-card td,
+		.yahtzee__score-card th {
+			padding: 0rem 0.67rem;
+		}
+
+		.bordered-thin,
+		.yahtzee__score-card,
+		.yahtzee__score-card tbody>tr>td,
+		.yahtzee__score-card tbody>tr>th {
+			border: 0.0625px solid currentColor;
+		}
+
+		.yahtzee {
+			padding: 1.5rem 1.5rem;
+		}
+
+		@media screen {
+			.yahtzee {
+				background-color: white;
+				box-shadow: 0.5rem 0.5rem 0rem rgba(0, 0, 0, 0.25);
+			}
+		}
+
+		.yahtzee__heading {
+			font-family: Paytone One;
+			font-size: 3rem;
+			margin-top: -1rem;
+		}
+
+		.yahtzee__score-card {
+			padding: 1px;
+			border-radius: 0.125rem;
+		}
+
+		.yahtzee__score-card table {
+			width: 100%;
+		}
+
+		.yahtzee__score-card .head {
+			text-transform: uppercase;
+		}
+
+		.yahtzee__score-card .head>th:nth-child(1) {
+			text-align: left;
+		}
+
+		.yahtzee__score-card td,
+		.yahtzee__score-card th {
+			vertical-align: middle;
+			height: 2.25rem;
+		}
+
+		.yahtzee__score-card .how-to-score {
+			width: 15%;
+		}
+
+		.yahtzee__score-card tfoot .desc .primary {
+			text-transform: uppercase;
+		}
+
+		.yahtzee__score-card .lower .head th {
+			border: 0;
+		}
+
+		.desc {
+			display: flex;
+			align-items: center;
+			text-align: left;
+		}
+
+		.desc .primary {
+			flex-grow: 1;
+		}
+
+		.desc .alt {
+			text-align: center;
+			width: 35%;
+		}
+
+		.desc .die {
+			font-size: 2rem;
+			line-height: 1;
+		}
+
+		.how-to-score:empty::after {
+			content: "\002192";
+			font-size: 1.6rem;
+		}
+
+		input.t {
+			border: 0;
+			margin: 0;
+			padding: 0;
+			outline: 0;
+			text-align: center;
+			width: 4ch;
+			font: normal normal 12pt Indie Flower;
+		}
+
+		/* CSS */
+		.button-30 {
+			align-items: center;
+			appearance: none;
+			background-color: #fcfcfd;
+			border-radius: 4px;
+			border-width: 0;
+			box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+			box-sizing: border-box;
+			color: #36395a;
+			cursor: pointer;
+			display: inline-flex;
+			font-family: "JetBrains Mono", monospace;
+			height: 48px;
+			justify-content: center;
+			line-height: 1;
+			list-style: none;
+			overflow: hidden;
+			padding-left: 16px;
+			padding-right: 16px;
+			position: relative;
+			text-align: left;
+			text-decoration: none;
+			transition: box-shadow 0.15s, transform 0.15s;
+			user-select: none;
+			-webkit-user-select: none;
+			touch-action: manipulation;
+			white-space: nowrap;
+			will-change: box-shadow, transform;
+			font-size: 18px;
+			margin: 0.75em;
+		}
+
+		.button-30:disabled {
+			cursor: not-allowed;
+			opacity: 0.6;
+		}
+
+		.button-30:focus {
+			box-shadow: #d6d6e7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+		}
+
+		.button-30:not(:disabled):hover {
+			box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+			transform: translateY(-2px);
+		}
+
+		.button-30:not(:disabled):active {
+			box-shadow: #d6d6e7 0 3px 7px inset;
+			transform: translateY(2px);
+		}
+
+		#datacsv {
+			color: #fff;
+			font-size: 1.25em;
+		}
+
+		#datacsv.hidden {
+			opacity: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<section>
+		<div class="yahtzee">
+			<h1 class="yahtzee__heading">Yahtzee</h1>
+			<div class="yahtzee__score-card">
+				<table>
+					<tbody class="upper">
+						<tr class="head">
+							<th>Upper Section</th>
+							<th>How to Score</th>
+							<th>Game #1</th>
+							<th>Game #2</th>
+							<th>Game #3</th>
+							<th>Game #4</th>
+							<th>Game #5</th>
+							<th>Game #6</th>
+						</tr>
+						<tr>
+							<th>
+								<div class="desc">
+									<div class="primary">Aces</div>
+									<div class="die">&#x2680;</div>
+								</div>
+							</th>
+							<th class="how-to-score">Count and Add<br />Only Aces</th>
+							<td class="game_1" data-goal-idx="1"></td>
+							<td class="game_2" data-goal-idx="1"></td>
+							<td class="game_3" data-goal-idx="1"></td>
+							<td class="game_4" data-goal-idx="1"></td>
+							<td class="game_5" data-goal-idx="1"></td>
+							<td class="game_6" data-goal-idx="1"></td>
+						</tr>
+						<tr>
+							<th>
+								<div class="desc">
+									<div class="primary">Twos</div>
+									<div class="die">&#x2681;</div>
+								</div>
+							</th>
+							<th class="how-to-score">Count and Add<br />Only Twoes</th>
+							<td class="game_1" data-goal-idx="2"></td>
+							<td class="game_2" data-goal-idx="2"></td>
+							<td class="game_3" data-goal-idx="2"></td>
+							<td class="game_4" data-goal-idx="2"></td>
+							<td class="game_5" data-goal-idx="2"></td>
+							<td class="game_6" data-goal-idx="2"></td>
+						</tr>
+						<tr>
+							<th>
+								<div class="desc">
+									<div class="primary">Threes</div>
+									<div class="die">&#x2682;</div>
+								</div>
+							</th>
+							<th class="how-to-score">Count and Add<br />Only Threes</th>
+							<td class="game_1" data-goal-idx="3"></td>
+							<td class="game_2" data-goal-idx="3"></td>
+							<td class="game_3" data-goal-idx="3"></td>
+							<td class="game_4" data-goal-idx="3"></td>
+							<td class="game_5" data-goal-idx="3"></td>
+							<td class="game_6" data-goal-idx="3"></td>
+						</tr>
+						<tr>
+							<th>
+								<div class="desc">
+									<div class="primary">Fours</div>
+									<div class="die">&#x2683;</div>
+								</div>
+							</th>
+							<th class="how-to-score">Count and Add<br />Only Fours</th>
+							<td class="game_1" data-goal-idx="4"></td>
+							<td class="game_2" data-goal-idx="4"></td>
+							<td class="game_3" data-goal-idx="4"></td>
+							<td class="game_4" data-goal-idx="4"></td>
+							<td class="game_5" data-goal-idx="4"></td>
+							<td class="game_6" data-goal-idx="4"></td>
+						</tr>
+						<tr>
+							<th>
+								<div class="desc">
+									<div class="primary">Fives</div>
+									<div class="die">&#x2684;</div>
+								</div>
+							</th>
+							<th class="how-to-score">Count and Add<br />Only Fives</th>
+							<td class="game_1" data-goal-idx="5"></td>
+							<td class="game_2" data-goal-idx="5"></td>
+							<td class="game_3" data-goal-idx="5"></td>
+							<td class="game_4" data-goal-idx="5"></td>
+							<td class="game_5" data-goal-idx="5"></td>
+							<td class="game_6" data-goal-idx="5"></td>
+						</tr>
+						<tr>
+							<th>
+								<div class="desc">
+									<div class="primary">Sixes</div>
+									<div class="die">&#x2685;</div>
+								</div>
+							</th>
+							<th class="how-to-score">Count and Add<br />Only Sixes</th>
+							<td class="game_1" data-goal-idx="6"></td>
+							<td class="game_2" data-goal-idx="6"></td>
+							<td class="game_3" data-goal-idx="6"></td>
+							<td class="game_4" data-goal-idx="6"></td>
+							<td class="game_5" data-goal-idx="6"></td>
+							<td class="game_6" data-goal-idx="6"></td>
+						</tr>
+						<tr class="foot">
+							<th>
+								<div class="desc">
+									<div class="primary">Total Score</div>
+								</div>
+							</th>
+							<th class="how-to-score"></th>
+							<td class="game_1" data-goal-total="upper"></td>
+							<td class="game_2" data-goal-total="upper"></td>
+							<td class="game_3" data-goal-total="upper"></td>
+							<td class="game_4" data-goal-total="upper"></td>
+							<td class="game_5" data-goal-total="upper"></td>
+							<td class="game_6" data-goal-total="upper"></td>
+						</tr>
+						<tr class="foot">
+							<th>
+								<div class="desc">
+									<div class="primary">Bonus</div>
+									<div class="alt">If total score is 63 or over.</div>
+								</div>
+							</th>
+							<th class="how-to-score">Score 35</th>
+							<td class="game_1" data-goal-bonus="upper"></td>
+							<td class="game_2" data-goal-bonus="upper"></td>
+							<td class="game_3" data-goal-bonus="upper"></td>
+							<td class="game_4" data-goal-bonus="upper"></td>
+							<td class="game_5" data-goal-bonus="upper"></td>
+							<td class="game_6" data-goal-bonus="upper"></td>
+						</tr>
+						<tr class="foot">
+							<th>
+								<div class="desc">
+									<div class="primary">Total</div>
+									<div class="alt">Of Upper Section</div>
+								</div>
+							</th>
+							<th class="how-to-score"></th>
+							<td class="game_1" data-goal-total="upper_final"></td>
+							<td class="game_2" data-goal-total="upper_final"></td>
+							<td class="game_3" data-goal-total="upper_final"></td>
+							<td class="game_4" data-goal-total="upper_final"></td>
+							<td class="game_5" data-goal-total="upper_final"></td>
+							<td class="game_6" data-goal-total="upper_final"></td>
+						</tr>
+					</tbody>
+					<tbody class="lower">
+						<tr class="head">
+							<th colspan="8">Lower Section</th>
+						</tr>
+						<tr>
+							<th>
+								<div class="desc">
+									<div class="primary">3 of a kind</div>
+								</div>
+							</th>
+							<th class="how-to-score">Total of all dice</th>
+							<td class="game_1" data-goal-idx="7"></td>
+							<td class="game_2" data-goal-idx="7"></td>
+							<td class="game_3" data-goal-idx="7"></td>
+							<td class="game_4" data-goal-idx="7"></td>
+							<td class="game_5" data-goal-idx="7"></td>
+							<td class="game_6" data-goal-idx="7"></td>
+						</tr>
+						<tr>
+							<th>
+								<div class="desc">
+									<div class="primary">4 of a kind</div>
+								</div>
+							</th>
+							<th class="how-to-score">Total of all dice</th>
+							<td class="game_1" data-goal-idx="8"></td>
+							<td class="game_2" data-goal-idx="8"></td>
+							<td class="game_3" data-goal-idx="8"></td>
+							<td class="game_4" data-goal-idx="8"></td>
+							<td class="game_5" data-goal-idx="8"></td>
+							<td class="game_6" data-goal-idx="8"></td>
+						</tr>
+						<tr>
+							<th>
+								<div class="desc">
+									<div class="primary">Full House</div>
+								</div>
+							</th>
+							<th class="how-to-score">Score 25</th>
+							<td class="game_1" data-goal-idx="9"></td>
+							<td class="game_2" data-goal-idx="9"></td>
+							<td class="game_3" data-goal-idx="9"></td>
+							<td class="game_4" data-goal-idx="9"></td>
+							<td class="game_5" data-goal-idx="9"></td>
+							<td class="game_6" data-goal-idx="9"></td>
+						</tr>
+						<tr>
+							<th>
+								<div class="desc">
+									<div class="primary">Sm. Straight</div>
+									<div class="alt">Sequence of four</div>
+								</div>
+							</th>
+							<th class="how-to-score">Score 30</th>
+							<td class="game_1" data-goal-idx="10"></td>
+							<td class="game_2" data-goal-idx="10"></td>
+							<td class="game_3" data-goal-idx="10"></td>
+							<td class="game_4" data-goal-idx="10"></td>
+							<td class="game_5" data-goal-idx="10"></td>
+							<td class="game_6" data-goal-idx="10"></td>
+						</tr>
+						<tr>
+							<th>
+								<div class="desc">
+									<div class="primary">Lg. Straight</div>
+									<div class="alt">Sequence of five</div>
+								</div>
+							</th>
+							<th class="how-to-score">Score 40</th>
+							<td class="game_1" data-goal-idx="11"></td>
+							<td class="game_2" data-goal-idx="11"></td>
+							<td class="game_3" data-goal-idx="11"></td>
+							<td class="game_4" data-goal-idx="11"></td>
+							<td class="game_5" data-goal-idx="11"></td>
+							<td class="game_6" data-goal-idx="11"></td>
+						</tr>
+						<tr>
+							<th>
+								<div class="desc">
+									<div class="primary">YAHTZEE</div>
+									<div class="alt">Five of a kind</div>
+								</div>
+							</th>
+							<th class="how-to-score">Score 50</th>
+							<td class="game_1" data-goal-idx="12"></td>
+							<td class="game_2" data-goal-idx="12"></td>
+							<td class="game_3" data-goal-idx="12"></td>
+							<td class="game_4" data-goal-idx="12"></td>
+							<td class="game_5" data-goal-idx="12"></td>
+							<td class="game_6" data-goal-idx="12"></td>
+						</tr>
+						<tr>
+							<th>
+								<div class="desc">
+									<div class="primary">Chance</div>
+								</div>
+							</th>
+							<th class="how-to-score">Total of all dice</th>
+							<td class="game_1" data-goal-idx="13"></td>
+							<td class="game_2" data-goal-idx="13"></td>
+							<td class="game_3" data-goal-idx="13"></td>
+							<td class="game_4" data-goal-idx="13"></td>
+							<td class="game_5" data-goal-idx="13"></td>
+							<td class="game_6" data-goal-idx="13"></td>
+						</tr>
+						<tr>
+							<th>
+								<div class="desc">
+									<div class="primary">YAHTZEE</div>
+									<div class="alt">Bonus</div>
+								</div>
+							</th>
+							<th class="how-to-score">Score 100<br />per &#x2714;</th>
+							<td class="game_1" data-goal-bonus="yahtzee"></td>
+							<td class="game_2" data-goal-bonus="yahtzee"></td>
+							<td class="game_3" data-goal-bonus="yahtzee"></td>
+							<td class="game_4" data-goal-bonus="yahtzee"></td>
+							<td class="game_5" data-goal-bonus="yahtzee"></td>
+							<td class="game_6" data-goal-bonus="yahtzee"></td>
+						</tr>
+						<tr class="foot">
+							<th>
+								<div class="desc">
+									<div class="primary">Total</div>
+									<div class="alt">Of Lower Section</div>
+								</div>
+							</th>
+							<th class="how-to-score"></th>
+							<td class="game_1" data-goal-total="lower"></td>
+							<td class="game_2" data-goal-total="lower"></td>
+							<td class="game_3" data-goal-total="lower"></td>
+							<td class="game_4" data-goal-total="lower"></td>
+							<td class="game_5" data-goal-total="lower"></td>
+							<td class="game_6" data-goal-total="lower"></td>
+						</tr>
+						<tr class="foot">
+							<th>
+								<div class="desc">
+									<div class="primary">Total</div>
+									<div class="alt">Of Upper Section</div>
+								</div>
+							</th>
+							<th class="how-to-score"></th>
+							<td class="game_1" data-goal-total="upper_final_2"></td>
+							<td class="game_2" data-goal-total="upper_final_2"></td>
+							<td class="game_3" data-goal-total="upper_final_2"></td>
+							<td class="game_4" data-goal-total="upper_final_2"></td>
+							<td class="game_5" data-goal-total="upper_final_2"></td>
+							<td class="game_6" data-goal-total="upper_final_2"></td>
+						</tr>
+						<tr class="foot">
+							<th>
+								<div class="desc">
+									<div class="primary">Grand Total</div>
+								</div>
+							</th>
+							<th class="how-to-score"></th>
+							<td class="game_1" data-goal-total="grand"></td>
+							<td class="game_2" data-goal-total="grand"></td>
+							<td class="game_3" data-goal-total="grand"></td>
+							<td class="game_4" data-goal-total="grand"></td>
+							<td class="game_5" data-goal-total="grand"></td>
+							<td class="game_6" data-goal-total="grand"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div>
+			<button class="button-30" onclick="play_turn(1, simulate_roll(5), [])">Roll Dice</button>
+			<button class="button-30" onclick="play_turn(1, [5, 4, 2, 1, 6], [])" disabled>Debug Specific
+				Outcomes</button><br />
+			<button class="button-30" onclick="simulate_game(1)">Simulate 1 Game</button><br />
+			<button class="button-30" onclick="simulate_games()">Simulate 6 Games</button><br />
+			<button class="button-30" onclick="run_simulation(5000)">Simulate 5000 Games</button>
+			<p><a id="datacsv" class="hidden" href="">Download CSV Data File</a></p>
+			<h3><a href="yahtzee_study.pdf" target="_blank" style="color: #fff; padding: 16px;">Read Results Study</a>
+			</h3>
+
+
+		</div>
+	</section>
+
+	<script>
+		/*
+		 *
+		 *
+		 * SCORING ALGORITHM
+		 *
+		 * In this algorithm each possible scoring objective is assigned a priority.
+		 * The priority is focused around collecting the upper bonus of 35 points.
+		 * These are the rules:
+		 *      - Higher priority goes first
+		 *      - When priority is the same, algorithm locks the best non-scored numbers
+		 *          and tries to maximize those, alternatively it tries to score an objective
+		 *          in the lower section of the game
+		 *      - Priorities are re-assigned after every turn
+		 *
+		 *
+		 * Here are the initial priorities at the beginning of the game for the upper section.
+		 * The algorithm will be focused at collecting these. Locking some of these numbers may
+		 * lead the algorithm to pick a scoring objective in the lower section
+		 *                          priority        goal_index
+		 *
+		 * 		N/A									0
+		 *      Aces                1               1
+		 *      Two                 1               2
+		 *      Threes              2               3
+		 *      Fours               4               4
+		 *      Fives               5               5
+		 *      Sixes               5               6
+		 *
+		 *      Three of a Kind     2               7
+		 *      Four of a Kind      2               8
+		 *      Full House          3               9
+		 *      Small Straight      2               10
+		 *      Large Straight      2               11
+		 *      Yahtzee             0               12
+		 *      Chance 	            0               13
+		 *
+		 */
+		var completed_goals = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+		var scores = [null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+		// Debug cases
+		//var completed_goals = [1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+		//var completed_goals = [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0];
+		//var completed_goals = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1];
+		var yahtzee_bonus = 0;
+		var game_over = false;
+
+		// Rolls X dice and returns array of values
+		const simulate_roll = (dice_num) => [...Array(dice_num)].map((_) => Math.floor(Math.random() * 6) + 1);
+
+		// Helper function to determine whether a given objective is the last one left for the player to achieve
+		const last_goal_left = (goal_index) => {
+			var completed_goals_clone = [...completed_goals];
+			completed_goals_clone.splice(goal_index, 1);
+			return new Set(completed_goals_clone).size === 1 ? true : false;
+		};
+
+		const last_goal_left_upper = () => {
+			var missing_goal = completed_goals.indexOf(0);
+			var one_goal_left = missing_goal === completed_goals.lastIndexOf(0);
+			return one_goal_left && missing_goal < 7 ? missing_goal : false;
+		};
+
+		// Helper function to determing wheter the bottom section has been completed or not
+		const lower_section_done = () => {
+			var completed_goals_clone = [...completed_goals];
+			return new Set(completed_goals_clone.slice(7)).size === 1 ? true : false;
+		};
+
+		// Helper function to find two (or more) consecutive dice, for the purpose of getting a straight
+		// also handles the case in which no two consecutive numbers are found (returns any die that is not 1 or 6)
+		const consecutive_dice = (combination) => {
+			var sorted_roll = Array.from(new Set(combination).values()).sort();
+			var gap = sorted_roll.findIndex((x, i) => i > 0 && x !== sorted_roll[i - 1] + 1);
+
+			var consecutives_1 = gap > -1 ? sorted_roll.slice(0, gap) : sorted_roll;
+			// This is an edge case, almost never happens!
+			// But here: 1,2,4,5 we have two pair of consecutives
+			var consecutives_2 = sorted_roll.slice(gap);
+
+			// If second consecutive pair exists, keep the better one
+			if (consecutives_2.length > 1) {
+				// Return consecutives that do not have an edge number: 1,6
+				return consecutives_1.includes(1) || consecutives_1.includes(6) ? consecutives_2 : consecutives_1;
+			} else {
+				return consecutives_1;
+			}
+		};
+
+		// Helper function to score a zero in case we screw up our scoring objectives
+		// the priority is given to Aces first (because they cause the least loss in PTS),
+		// and then to any other objective in descreasing order of difficulty
+		const score_mistake = (tgt, times = 1) => {
+			// Remember: never! score a mistake in the upper section,
+			// if that mistake causes the upper total to never reach 63
+
+			// Scores mistake in the Aces
+			if ((!completed_goals[1] && !last_goal_left_upper()) || (last_goal_left(1) && total_upper + 2 > 62)) {
+				completed_goals[1] = 1;
+				scores[1] = tgt === 1 ? tgt * times : 0;
+			}
+			// Scores mistake in the Twos (only if the current upper section score is already > 62)
+			else if ((!completed_goals[2] && !last_goal_left_upper()) || (last_goal_left(2) && total_upper + 4 > 62)) {
+				completed_goals[2] = 1;
+				scores[2] += tgt === 2 ? tgt * times : 0;
+			}
+			// Scores mistake in Yahtzee
+			else if (!completed_goals[12]) {
+				completed_goals[12] = 1;
+				scores[12] = 0;
+			}
+			// Scores mistake in 4OK
+			else if (!completed_goals[8]) {
+				completed_goals[8] = 1;
+				scores[8] = 0;
+			}
+			// Scores mistake in Large Straight
+			else if (!completed_goals[11]) {
+				completed_goals[11] = 1;
+				scores[11] += 0;
+			}
+		};
+
+		// Helper function to determine if a mistake was made in scoring
+		// A mistake is any of the upper section numbers only rolled twice.
+		// To fix this mistake the player should roll any of the following numbers at least 4 times
+		const check_mistake = () => {
+			var upper_section_scores = scores.slice(0, 8);
+			var pair_only_rolled = upper_section_scores.findIndex((x) => x < x * 3);
+			var greater_number_rolled_four_times = upper_section_scores.findIndex((x) => x === x * 4);
+
+			// If a number was rolled only two times, it's a mistake,
+			// and the mistake is fixed if a higher number is rolled 4 times
+			// If 12 was rolled in the sixes, we're in trouble. Big mistake!
+			if (upper_section_scores[5] === 12) return true;
+			else if (pair_only_rolled > -1 && greater_number_rolled_four_times === -1) return true;
+			else return false;
+		};
+
+		// Should check the outcome of a roll, and hold dice if necessary
+		const check_rolls = (new_roll, previews_roll) => {
+			var counters = [0, 0, 0, 0, 0, 0];
+
+			var current_combination = previews_roll.concat(new_roll);
+			current_combination.map((x) => (counters[x - 1] += 1));
+
+			var set = new Set(current_combination.sort());
+			var only_ones_left = new Set(completed_goals.slice(2)).size === 1 ? true : false;
+
+			var number_missing = last_goal_left_upper();
+			// If only a number in the section is the last goal missing
+			if (number_missing) {
+				// We return that number if present in the combination
+				if (current_combination.includes(number_missing)) return current_combination.filter((x) => x === number_missing);
+				// Otherwise we reroll
+				else return [];
+			}
+			// Else, we analyze every single case
+			else {
+				switch (set.size) {
+					//
+					// The set contains only 1 number.
+					// Possible combinations: AAAAA
+					case 1:
+						return current_combination;
+					//
+					// The set contains 2 different numbers.
+					// Possible combinations: AAAAB or AAABB
+					case 2:
+						var same_four_dice = counters.indexOf(4) + 1;
+						var same_three_dice = counters.indexOf(3) + 1;
+						var odd_one_out = counters.indexOf(1) + 1;
+						var pair = counters.indexOf(2) + 1;
+
+						// If the only goals left are small or large straight, we can't do anything with four same dice
+						if (last_goal_left(10) || last_goal_left(11)) {
+							// To make things easier, we hold any 2 or 3 consecutive dice
+							return consecutive_dice(current_combination);
+						} else {
+							// If we have 4 same dice, we should hold them and try to get a Yahtzee!
+							if (same_four_dice) {
+								// If everything in the lower section is taken
+								// and the four dice have already been scored in the upper section
+								if (lower_section_done() && completed_goals[same_four_dice]) {
+									// either keep the odd one out, if it's still needed
+									if (!completed_goals[odd_one_out]) {
+										return [odd_one_out];
+									}
+									// or re-roll everything
+									else {
+										return [];
+									}
+								}
+
+								// If Yahtzee is already achieved,
+								// let's try to get a good ending number for our 4-of-a-kind
+								else if (!completed_goals[12] || odd_one_out < 4) {
+									return Array(4).fill(same_four_dice);
+								} else {
+									return Array(4).fill(same_four_dice).concat(odd_one_out);
+								}
+							}
+							// Else if we have 3 same dice, we have a full-house.
+							else {
+								// Priority to scoring the top
+								if (!completed_goals[same_three_dice] && same_three_dice > 2) {
+									return Array(3).fill(same_three_dice);
+								}
+								// Otherwise if full-house is not scored then this is a full
+								else if (!completed_goals[9]) {
+									return current_combination;
+								}
+								// Else we hold the pair if it's worth it
+								else if (!completed_goals[pair] && pair > 2) {
+									return Array(2).fill(pair);
+								}
+								// Else if straights are missing we hold the two consecutive numbers
+								else if (last_goal_left(10) || last_goal_left(11)) {
+									return consecutive_dice(current_combination);
+								}
+								// Else, we re-roll everything
+								else {
+									return [];
+								}
+							}
+						}
+					//
+					// The set contains 3 different numbers.
+					// Possible combinations: AA,BB,C or AAA,B,C
+					case 3:
+						var same_three_dice = counters.indexOf(3) + 1;
+						var first_odd_one_out = counters.indexOf(1) + 1;
+						var last_odd_one_out = counters.lastIndexOf(1) + 1;
+						var max_odd_one_out = Math.max(first_odd_one_out, last_odd_one_out);
+						var min_odd_one_out = Math.min(first_odd_one_out, last_odd_one_out);
+
+						// If the only goals left are small or large straight, we can't do anything with any outcome of this roll
+						if (last_goal_left(10) || last_goal_left(11)) {
+							// To make things easier, we hold any 2 or 3 consecutive dice
+							return consecutive_dice(current_combination);
+						}
+
+						// Now, any further decision depends on the combination that we have
+						// Combination AAA,B,C
+						else if (same_three_dice) {
+							// If lower section is already completed
+							if (lower_section_done()) {
+								// We keep the 3 dice if they are needed in the upper section
+								if (!completed_goals[same_three_dice]) {
+									return Array(3).fill(same_three_dice);
+								}
+								// Else, we keep any of the two different dice
+								else if (!completed_goals[max_odd_one_out]) return [max_odd_one_out];
+								else if (!completed_goals[min_odd_one_out]) return [min_odd_one_out];
+								// Else, we re-roll everything
+								else {
+									return [];
+								}
+							}
+							// Else, if top or bottom are needed, we just keep the 3 same dice
+							else {
+								return Array(3).fill(same_three_dice);
+							}
+						}
+						// Combination AA,BB,C
+						else {
+							var first_pair = counters.indexOf(2) + 1;
+							var last_pair = counters.lastIndexOf(2) + 1;
+							var max_pair = Math.max(first_pair, last_pair);
+							var min_pair = Math.min(first_pair, last_pair);
+
+							// If full-house is the last goal left we must keep the double pair.
+							// But we'll also keep it if full house is needed and the max of the pair is lower than 4
+							if (last_goal_left(9) || (completed_goals[9] && Math.max(first_pair, last_pair) < 4)) {
+								return Array(2).fill(first_pair).concat(Array(2).fill(last_pair));
+							}
+							// If full-house is scored and small-straight is not scored we hold at least 3 consectutive numbers
+							else if (completed_goals[9] && !completed_goals[10] && consecutive_dice(current_combination).length > 2) {
+								return consecutive_dice(current_combination);
+							}
+							// If only 3OK or 4OK or Yahtzee are needed then we must the highest pair
+							else if (last_goal_left(7) || last_goal_left(8) || last_goal_left(13)) {
+								return Array(2).fill(max_pair);
+							}
+							// Otherwise, if full-house is not needed, then we check if both the pairs are scored already in the upper section
+							// with the priority to the highest one, and we hold those numbers
+							else {
+								if (!completed_goals[max_pair]) return Array(2).fill(max_pair);
+								else if (!completed_goals[min_pair]) return Array(2).fill(min_pair);
+								// Else, if both are already scored, we check if any straight is missing
+								else if (!completed_goals[10] || !completed_goals[11]) {
+									return consecutive_dice(current_combination);
+								}
+								// Else, we keep the odd_one_out if it's good
+								else if (first_odd_one_out > 3) {
+									return [first_odd_one_out];
+								}
+								// Else, if all else fails, we reroll everything
+								else {
+									return [];
+								}
+							}
+						}
+					//
+					// The set contains 4 different numbers
+					// Possible combinations: AA,B,C,D (where ABCD are sequential) or A,BB,D,E (non sequential)
+					case 4:
+						var pair = counters.indexOf(2) + 1;
+						var other_numbers = Array.from(set.delete(pair));
+
+						// If the pair is higher than 3, and the currenct consecutive numbers are 3 or less, we hold the pair
+						if (pair > 1 && consecutive_dice(current_combination).length < 4 && !completed_goals[pair]) {
+							return Array(2).fill(pair);
+						}
+						// Else, if any of the straights are missing, and the consecutive numbers are at least three, we return those
+						else if ((!completed_goals[10] || !completed_goals[11]) && consecutive_dice(current_combination).length > 2) {
+							return consecutive_dice(current_combination);
+						}
+						// Else, if the pair is needed in the upper section and it's not [1,1] we hold it
+						else if (!completed_goals[pair] && pair !== 1) {
+							return Array(2).fill(pair);
+						}
+						// Else, if only 3OK, or 4OK, or Yahtzee are missing, we keep the pair regardless of what number it is.
+						else if (last_goal_left(7) || last_goal_left(8) || last_goal_left(13)) {
+							return Array(2).fill(pair);
+						}
+						// In any other case, we keep the highest number
+						else {
+							return [Math.max(...current_combination)];
+						}
+					//
+					// The set contains 5 different numbers
+					// Possible combinations: A,B,C,D,E (sequential) or A,B,C,D,F (non sequential)
+					case 5:
+						// We hold consecutive dice to form a straight only if
+						// Small-straight is missing
+						// Large-straight is the only goal left
+						// large-straight is missing and 4 consecutive dice don't contain 1 or 6
+						if (!completed_goals[10] || last_goal_left(11) || (!completed_goals[11] && !consecutive_dice(current_combination).includes(1) && !consecutive_dice(current_combination).includes(6))) {
+							return consecutive_dice(current_combination);
+						}
+						// Else, if no straigh is missing, and chance is NOT the last goal we keep the highest number
+						else if (!last_goal_left(13)) {
+							return [Math.max(...current_combination)];
+						}
+						// Else, if chance is the last goal missing, we keep any number higher than 3
+						else {
+							return current_combination.filter((x) => x > 3);
+						}
+				}
+			}
+		};
+
+		const score = (final_combination) => {
+			//console.log("Final Result: ", final_combination.sort());
+			var set = new Set(final_combination.sort());
+
+			var counters = [0, 0, 0, 0, 0, 0];
+			final_combination.map((x) => (counters[x - 1] += 1));
+			var sum = final_combination.reduce((a, v) => a + v, 0);
+
+			// Return false if all the mistakable parts are filled
+			var mistakes_full = completed_goals[1] && completed_goals[2] && completed_goals[8] && completed_goals[11] && completed_goals[12] ? true : false;
+
+			var number_missing = last_goal_left_upper();
+			// If only a number in the section is the last goal missing
+			if (number_missing) {
+				var how_many = final_combination.filter((x) => x === number_missing).length;
+				completed_goals[number_missing] = 1;
+				scores[number_missing] = number_missing * how_many;
+			}
+			// Else we go thourgh every single scoring case
+			else {
+				switch (set.size) {
+					case 1:
+						if (!completed_goals[12]) {
+							scores[12] = 50;
+							completed_goals[12] = 1;
+						} else {
+							var iterator = set.values();
+							var number = iterator.next().value;
+
+							// If Yahtzee was not cancelled out we can score the bonuses
+							if (scores[12] === 50) {
+								yahtzee_bonus += 100;
+								// The JOKER Yahtzee bonus rule!
+								// The second Yahtzee rolled acts as a Joker so that the Full House, Small Straight and Large Straight
+								// categories can be used to score 25, 30 or 40 (respectively).
+								// If the corresponding Upper Section box and all Lower Section boxes have been used, an unused Upper Section box must be used, scoring 0.
+								if (number === 6 && !completed_goals[6]) {
+									completed_goals[6] = 1;
+									scores[6] = 30;
+								} else if (!completed_goals[11]) {
+									completed_goals[11] = 1;
+									scores[11] = 40;
+								} else if (!completed_goals[10]) {
+									completed_goals[10] = 1;
+									scores[10] = 30;
+								} else if (!completed_goals[9]) {
+									completed_goals[9] = 1;
+									scores[9] = 25;
+								} else if (!completed_goals[number]) {
+									completed_goals[number] = 1;
+									scores[number] = number * 5;
+								} else if (lower_section_done() && completed_goals[number]) {
+									score_mistake();
+								}
+							}
+							// Otherwise we score anything else
+							else {
+								if (!completed_goals[number]) {
+									completed_goals[number] = 1;
+									scores[number] = number * 5;
+								} else {
+									score_mistake();
+								}
+							}
+						}
+						break;
+					case 2:
+						var same_four_dice = counters.indexOf(4) + 1;
+						var same_three_dice = counters.indexOf(3) + 1;
+						var first_odd_one_out = counters.indexOf(1) + 1;
+						var pair = counters.indexOf(2) + 1;
+
+						// If we have four same dice
+						if (same_four_dice) {
+							// If we have 4 sixes or twos
+							if (same_four_dice === 6 || same_four_dice === 2) {
+								// We score them in the upper section if not taken
+								// Sixes because they are strong toward the bonus,
+								// Twos because it would be a too weak 4OK
+								if (!completed_goals[same_four_dice]) {
+									completed_goals[same_four_dice] = 1;
+									scores[same_four_dice] = same_four_dice * 4;
+								}
+								// Else score 4OK if needed
+								else if (!completed_goals[8]) {
+									completed_goals[8] = 1;
+									scores[8] = same_four_dice + first_odd_one_out;
+								}
+								// Else score 3OK
+								else if (!completed_goals[7]) {
+									completed_goals[7] = 1;
+									scores[7] = same_four_dice + first_odd_one_out;
+								}
+								// Else score Chance
+								else if (!completed_goals[13]) {
+									completed_goals[13] = 1;
+									scores[13] = sum;
+								}
+								// Else score mistake
+								else {
+									score_mistake(first_odd_one_out < 3 ? first_odd_one_out : 0);
+								}
+							}
+							// In any other case
+							else {
+								// If we have any mistake in the upper section we score the four dice there instead
+								if (check_mistake() && !completed_goals[same_four_dice]) {
+									completed_goals[same_four_dice] = 1;
+									scores[same_four_dice] = same_four_dice * 4;
+								}
+								// If 4OK is not taken score it
+								else if (!completed_goals[8]) {
+									completed_goals[8] = 1;
+									scores[8] = same_four_dice * 4 + first_odd_one_out;
+								}
+								// Else, if the related upper section is not taken score it
+								else if (!completed_goals[same_four_dice]) {
+									completed_goals[same_four_dice] = 1;
+									scores[same_four_dice] = same_four_dice * 4;
+								}
+								// Else, score 3OK if possible
+								else if (completed_goals[same_four_dice] && !completed_goals[7]) {
+									completed_goals[7] = 1;
+									scores[7] = same_four_dice * 4 + first_odd_one_out;
+								}
+								// Else, if related upper section, 4OK, 3OK are completed score chance
+								else if (completed_goals[same_four_dice] && completed_goals[7] && completed_goals[8] && !completed_goals[13]) {
+									completed_goals[13] = 1;
+									scores[13] = same_four_dice * 4 + first_odd_one_out;
+								}
+								// Else, if everyting is taken, we score a mistake
+								else {
+									score_mistake(first_odd_one_out < 3 ? first_odd_one_out : 0);
+								}
+							}
+						}
+						// We have a combination of AAA BB
+						else {
+							// Scores 3OK (simplified conidtion is satisfied if 3OK is at least 16)
+							//if (same_three_dice === 6 && pair > 3 && !completed_goals[7]) {
+							if (sum > 19 && !completed_goals[7]) {
+								completed_goals[7] = 1;
+								scores[7] = same_three_dice * 3 + pair * 2;
+							}
+							// Scores Full-House
+							else if (!completed_goals[9]) {
+								completed_goals[9] = 1;
+								scores[9] = 25;
+							}
+							// Scores upper section
+							else if (!completed_goals[same_three_dice]) {
+								completed_goals[same_three_dice] = 1;
+								scores[same_three_dice] = same_three_dice * 3;
+							}
+							// Scores Chance
+							else if (completed_goals[same_three_dice] && completed_goals[7] && completed_goals[8] && !completed_goals[13] && sum > 15) {
+								completed_goals[13] = 1;
+								scores[13] = same_three_dice * 3 + pair * 2;
+							}
+							// Else if the pair is needed and is lower than 3 we score it
+							else if (!completed_goals[pair] && pair < 3) {
+								completed_goals[pair] = 1;
+								scores[pair] = pair * 2;
+							}
+							// Else, if everyting is taken, we score a mistake (because we suck)
+							else {
+								score_mistake(pair, 2);
+							}
+						}
+						break;
+					case 3:
+						var same_three_dice = counters.indexOf(3) + 1;
+						var first_odd_one_out = counters.indexOf(1) + 1;
+						var last_odd_one_out = counters.lastIndexOf(1) + 1;
+
+						// Case AAA, B, C (not too bad)
+						if (same_three_dice) {
+							// 3OK
+							if (!completed_goals[7] && sum > 20) {
+								completed_goals[7] = 1;
+								scores[7] = same_three_dice * 3 + first_odd_one_out + last_odd_one_out;
+							}
+							// Upper Section
+							else if (!completed_goals[same_three_dice]) {
+								completed_goals[same_three_dice] = 1;
+								scores[same_three_dice] = same_three_dice * 3;
+							}
+							// Chance
+							else if (completed_goals[same_three_dice] && completed_goals[7] && completed_goals[8] && !completed_goals[13]) {
+								completed_goals[13] = 1;
+								scores[13] = same_three_dice * 3 + first_odd_one_out * 2;
+							}
+							// Else, if everyting is taken, we score a mistake (because we suck)
+							// we use the lowest of the odd ones
+							else {
+								score_mistake(Math.min(first_odd_one_out, last_odd_one_out));
+							}
+						}
+						// Case AA, BB, C
+						else {
+							var first_pair = counters.indexOf(2) + 1;
+							var last_pair = counters.lastIndexOf(2) + 1;
+							var first_odd_one_out = counters.indexOf(1) + 1;
+							var min_pair = Math.min(first_pair, last_pair);
+
+							// Score the lowest pair
+							if (!completed_goals[min_pair] && min_pair < 3) {
+								completed_goals[min_pair] = 1;
+								scores[min_pair] = min_pair * 2;
+							}
+							// Else, if chance is needed and it's a good chance, we score it
+							else if (!completed_goals[13] && sum > 20) {
+								completed_goals[13] = 1;
+								scores[13] = sum;
+							} else {
+								score_mistake(first_odd_one_out < 3 ? first_odd_one_out : 0);
+							}
+						}
+						break;
+					case 4:
+						var pair = counters.indexOf(2) + 1;
+						// Scores small straight
+						if (!completed_goals[10] && consecutive_dice(final_combination).length > 3) {
+							completed_goals[10] = 1;
+							scores[10] = 30;
+						}
+						// Else if chance is needed and it's a good chance
+						else if (!completed_goals[13] && sum > 20) {
+							completed_goals[13] = 1;
+							scores[13] = sum;
+						}
+						// Else if no more mistakes are aviable
+						else if (mistakes_full) {
+							// We score the pair
+							if (!completed_goals[pair]) {
+								completed_goals[pair] = 1;
+								scores[pair] = pair * 2;
+							}
+						}
+						// Else we score a mistake
+						else {
+							if (pair < 3) {
+								score_mistake(pair, 2);
+							} else {
+								score_mistake(Math.min(...final_combination));
+							}
+						}
+
+						break;
+					case 5:
+						// Score Large-Straight
+						if (!completed_goals[11] && consecutive_dice(final_combination).length === 5) {
+							completed_goals[11] = 1;
+							scores[11] = 40;
+						}
+						// If small-straigh is still needed score it
+						else if (!completed_goals[10] && consecutive_dice(final_combination).length > 3) {
+							completed_goals[10] = 1;
+							scores[10] = 30;
+						}
+						// Score a chance
+						else if (!completed_goals[13] && sum > 19) {
+							completed_goals[13] = 1;
+							scores[13] = sum;
+						} else {
+							score_mistake(Math.min(...final_combination));
+						}
+				}
+			}
+		};
+
+		//------------------//
+		//		DEBUG		//
+		//------------------//
+		// Helper function to debug the rolls - Check in console
+		var debug_roll = [];
+		function FormatRoll(newRolledDice, previousDice, finalDice) {
+			this.newRolledDice = newRolledDice;
+			this.previousDice = previousDice;
+			this.finalDice = finalDice;
+		}
+
+		//------------------//
+		//		GAME ON		//
+		//------------------//
+		const play_turn = (roll_number, new_roll, previews_roll, log = true) => {
+			if (roll_number === 1) {
+				debug_roll = [];
+			}
+			if (roll_number < 3 && previews_roll.length !== 5) {
+				var locked_dice = check_rolls(new_roll, previews_roll);
+
+				const new_entry = new FormatRoll(JSON.stringify(new_roll), JSON.stringify(previews_roll));
+				debug_roll.push(new_entry);
+
+				//console.log("Roll #", roll_number, new_roll, previews_roll);
+
+				play_turn(roll_number + 1, simulate_roll(5 - locked_dice.length), locked_dice, log);
+			} else {
+				var combination = previews_roll.concat(new_roll);
+
+				const new_entry = new FormatRoll(JSON.stringify(new_roll), JSON.stringify(previews_roll), JSON.stringify(combination));
+				debug_roll.push(new_entry);
+
+				//console.log("Roll #", roll_number, new_roll, previews_roll);
+				if (log) console.table(debug_roll);
+
+				score(combination);
+				//console.log(completed_goals);
+			}
+		};
+
+		const simulate_game = (game_number) => {
+			//console.clear();
+			var i = 1;
+			while (completed_goals.indexOf(0) > -1) {
+				console.log("\n\nTurn #", i);
+				play_turn(1, simulate_roll(5), []);
+				i++;
+			}
+			document.querySelectorAll(`.game_${game_number}[data-goal-idx]`).forEach((v, i) => {
+				v.innerHTML = scores[i + 1];
+			});
+
+			var tot_up = scores.slice(1, 7).reduce((a, v) => (a += v), 0);
+			var tot_low = scores.slice(7, -1).reduce((a, v) => (a += v), 0);
+			var up_bonus = tot_up > 62 ? 35 : 0;
+			document.querySelector(`.game_${game_number}[data-goal-total='upper']`).innerHTML = tot_up;
+			document.querySelector(`.game_${game_number}[data-goal-bonus='upper']`).innerHTML = up_bonus;
+			document.querySelector(`.game_${game_number}[data-goal-total='upper_final']`).innerHTML = tot_up + up_bonus;
+
+			document.querySelector(`.game_${game_number}[data-goal-bonus='yahtzee']`).innerHTML = yahtzee_bonus;
+
+			document.querySelector(`.game_${game_number}[data-goal-total='upper_final_2']`).innerHTML = tot_up + up_bonus;
+			document.querySelector(`.game_${game_number}[data-goal-total='lower']`).innerHTML = tot_low;
+			document.querySelector(`.game_${game_number}[data-goal-total='grand']`).innerHTML = tot_low + tot_up + up_bonus + yahtzee_bonus;
+
+			// Now reset the goals array
+			completed_goals = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+			yahtzee_bonus = 0;
+		};
+
+		const simulate_games = () => {
+			for (i = 1; i < 7; i++) {
+				simulate_game(i);
+			}
+		};
+
+		const run_simulation = (times) => {
+			var data = [["Ones", "Twos", "Trees", "Fours", "Fives", "Sixes", "Bonus", "ThreeOfAKind", "FourOfAKind", "FullHouse", "SmStraight", "LgStraight", "Yacht", "Chance", "Total"]];
+
+			for (i = 1; i < times + 1; i++) {
+				while (completed_goals.indexOf(0) > -1) {
+					play_turn(1, simulate_roll(5), [], false);
+				}
+
+				var tot_up = scores.slice(1, 7).reduce((a, v) => (a += v), 0);
+				var tot_low = scores.slice(7, -1).reduce((a, v) => (a += v), 0);
+				var up_bonus = tot_up > 62 ? 35 : 0;
+
+				var data_point = scores.slice(1);
+				data_point.splice(6, 0, up_bonus);
+				if (yahtzee_bonus) data_point.splice(12, 1, data_point[12] + yahtzee_bonus);
+				data_point.push(tot_up + up_bonus + tot_low + yahtzee_bonus);
+
+				data.push(data_point);
+
+				// Now reset the goals array
+				completed_goals = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+				scores = [null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+				yahtzee_bonus = 0;
+			}
+
+			console.log(data);
+			/*let csvContent = "data:text/csv;charset=utf-8," + data.map((r) => r.join(",")).join("\n");
+			var encodedUri = encodeURI(csvContent);
+
+			var link = document.querySelector("#datacsv");
+			link.setAttribute("href", encodedUri);
+			link.setAttribute("download", "games.csv");
+			link.classList.remove("hidden");*/
+		};
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<div id="portfolio">
+    <h1>Portfolio - A bit of Everything</h1>
+    <div class="alert alert-danger" style="margin: -15px 0 40px 0;">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Click here to download my <a class="alert-link" target="_blank" href="resources/portfolio_AVK_pdf.pdf">PDF Portfolio</a>
+    </div>
+    <h2>Some of my Projects<span></span></h2>
+    <ul class="list">
+        <li><strong>Filter: </strong></li>
+        <li ng-repeat="cat in projcat" ng-class="{selectedF: $index == selected}" ng-click="selectFilter($index)" >
+            <span ng-click="filters.category = cat.category;">{{cat.category}}</span>
+        </li>
+    </ul>                                  
+
+    <div class="container">
+        <div class="row">
+            <figure class="prova col-sm-6 col-md-3 portfolio-animation" ng-repeat="project in projects | filter:filters">
+                <a href="portfolio-extended.html#{{project.id}}" ng-click="softRedirect($event)">
+                    <img ng-src={{project.thumbnail}} alt="{{project.name}}" />
+                    <figcaption>
+                        <div class="img-caption">{{project.name}}<br><label>{{project.label}}</label></div>
+                    </figcaption>
+                </a>
+            </figure>
+        </div>
+    </div>
+</div>

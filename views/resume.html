@@ -1,0 +1,46 @@
+<div id="resume">
+    <h1><span>Resume - Experiences</span></h1>
+    <div class="alert alert-danger" style="margin: -15px 0 40px 0;">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Click here to download my<a class="alert-link" target="_blank" href="resources/resume_AVK_web.pdf"> PDF Resume</a>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-6">
+                <div ng-repeat="skill in skills" style="margin-bottom: 50px">
+                    <h2>{{skill.category}}<span></span></h2>
+                    <div ng-repeat="s in skill.skill" class="progress">
+                        <span>{{s.name}}</span>
+                        <div class="skill-progressbar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{s.level}}" aria-valuemin="0" aria-valuemax="100"></div>
+                        <span>{{s.level}}%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-6">
+                <h2>Work Experiences<span></span></h2>
+                <div ng-repeat="exp in experiences">
+                    <div class="experience-box">
+                        <strong>{{exp.company}}<span>{{exp.period}}</span></strong>
+                        <h4>{{exp.title}}</h4>
+                        {{exp.description}}
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function loadResume(){
+        $('#resume .skill-progressbar').each(function(){
+            var lvl = $(this).attr('aria-valuenow');
+            $(this).css('width',lvl+'%');
+            $(this).addClass('loaded');
+        });        
+    }
+    if (window.location.href.indexOf("/vcard/resume") > -1) {
+        $('#vcard').one('animationend oAnimationEnd webkitAnimationEnd', loadResume);
+    }else{
+        $('.fadeInLeft').one('animationend oAnimationEnd webkitAnimationEnd', loadResume)
+    }
+</script>

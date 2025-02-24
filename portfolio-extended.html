@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="nameApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>AVK | Beyond Design</title>
+    <meta name="description" content="AVK - VCard & Portfolio">
+    <meta name="author" content="Alessio Van Keulen">
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,800,700,900">
+
+    <!-- NEED BOOTSTRAP (4) FOR RESPONSIVE GRID SYSTEM ONLY!!! Angular takes care of tabs, animations, and possibly carousel -> See CDNJS for more options -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/scrollbar.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles-pe.css">
+    <link rel="stylesheet" href="css/theme.css">
+
+    <script src="https://use.fontawesome.com/50b1893062.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+
+<body id="portfolio" class="container-fluid" ng-controller="vcardController">
+
+    <a id="close-portfolio" href="index.html" ng-click="softRedirect($event)"
+        style="opacity:0; visibility: hidden"><label class="fa-label">Back&nbsp;to&nbsp;VCard</label><i
+            class="fa fa-times box" aria-hidden="true"></i></a>
+
+    <!-- Header -->
+    <header id="portfolio-header">
+        <h1 style="padding-top: 50px;">Portfolio Extended</h1>
+    </header>
+
+
+
+    <!-- Main -->
+    <main class="row justify-content-center">
+        <div class="col-md-9 col-sm-10 col-xs-12">
+
+
+            <section id="portfolio-carousel" class="hidden-sm-down container-fluid carousel slide" init-carousel
+                carousel-change>
+                <ol class="carousel-indicators">
+                    <li class="carousel-indicator" ng-repeat="project in projects" data-slide-to="{{project.id}}"></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item" ng-repeat="project in projects" data-prjid="{{project.id}}"
+                        data-prjimg="{{project.image}}" data-prjname="{{project.name}}"
+                        data-prjld="{{project.description}}" data-prjlink="{{project.link}}"
+                        data-prjprice="{{project.price}}">
+                        <a href="#"><span style="background-image: url({{project.image}});"></span></a>
+                    </div>
+                    <i id="carousel-status" aria-hidden="true"></i>
+                    <hr id="carousel-progressbar" />
+                </div>
+                <a class="carousel-control-prev" href="#portfolio-carousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#portfolio-carousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </section>
+
+            <section id="portfolio-prj-info" class="container-fluid">
+                <h3 class="hidden-sm-down">Description</h3>
+                <div class="row">
+                    <figure class="col-xs-12 col-sm-6 col-md-4">
+                        <img class="prj-img" />
+                    </figure>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <h2>Slideshow Controls<span></span></h2>
+                        <a href="#portfolio-carousel" role="button" data-slide="prev"><i
+                                class="fa fa-chevron-left box-small"></i></a>
+                        <a href=""><i id="carouselControl" class="fa fa-play box-small"></i></a>
+                        <a href="#portfolio-carousel" role="button" data-slide="next"><i
+                                class="fa fa-chevron-right box-small"></i></a>
+                        <h2 style="margin-top: 40px;">Project Details<span></span></h2>
+                        <ul class="row-table">
+                            <li class="prj-name">
+                                <h5>Name</h5><span></span>
+                            </li>
+                            <li class="prj-link">
+                                <h5>Link</h5><span><a target="_blank" href="">See Project</a></span>
+                            </li>
+                            <li class="prj-price">
+                                <h5>Price
+                                    <a href="#" data-toggle="tooltip" data-placement="bottom"
+                                        title="Prices shown here, are valid only for transactions through this website.">
+                                        <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+                                    </a>
+                                </h5><span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4">
+                        <h2>Case Study<span></span></h2>
+                        <div class="prj-ld"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="portfolio-items" class="container-fluid">
+                <h3>Related Items</h3>
+                <ul class="list">
+                    <li><strong>Filter: </strong></li>
+                    <li ng-repeat="cat in projcat" ng-class="{selectedF: $index == selected}"
+                        ng-click="selectFilter($index)">
+                        <span
+                            ng-click="filters.category = cat.category; initPEcat(cat.category)">{{cat.category}}</span>
+                    </li>
+                </ul>
+                <div class="row">
+                    <figure class="prova col-xm-6 col-sm-4 col-md-3 col-lg-2 portfolio-animation"
+                        ng-repeat="project in projects | filter:filters" ng-click="scrollTop()">
+                        <a href="" data-target="#portfolio-carousel" data-slide-to="{{project.id}}">
+                            <img ng-src={{project.thumbnail}} alt="{{project.name}}" />
+                            <figcaption>
+                                <div class="img-caption">{{project.name}}<br><label>{{project.label}}</label></div>
+                            </figcaption>
+                        </a>
+                    </figure>
+                </div>
+            </section>
+
+
+        </div>
+    </main>
+
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="row justify-content-center">
+            <div class="col-md-4" align="center">
+                <img src="imgs/bg/logo-caption-v.png" />
+                <div id="profile-social">
+                    <a ng-repeat="social in profile.social" href="{{social.url}}" target="_blank"><i
+                            class="{{social.icon}} box"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <div id="loadContainer"><span class="loader"><span class="loader-inner"></span></span></div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <!-- NEED BOOTSTRAP (4) FOR RESPONSIVE GRID SYSTEM ONLY!!! Angular takes care of tabs, animations, and possibly carousel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-resource.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/7.3.1/smooth-scrollbar.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/angular-smooth-scrollbar/7.2.0/angular-smooth-scrollbar.min.js"></script>
+
+    <script src="js/scripts.js"></script>
+    <script src="js/pe.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-105197618-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+</body>
+
+</html>

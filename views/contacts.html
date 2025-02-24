@@ -1,0 +1,64 @@
+<div id="contacts">
+    <h1>Contact</h1>
+    <div id="contact-map">
+        <div id="map" style="height: 100%;"></div>
+        <script>
+            function initMap() {
+                var Business = {lat: 38.873301, lng: -77.285011};
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 12,
+                    center: Business
+                });
+                var marker = new google.maps.Marker({
+                    position: Business,
+                    map: map
+                });
+            }
+        </script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8w_xlz7olLQvQFa3ysgt5iqX4KU2zw7I&callback=initMap">
+        </script>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10 col-md-6" style="margin-bottom: 20px">
+                <h2>Shall we get in touch?<span></span></h2>
+                <div class="contact-form">
+                    <form id="contactForm" name="contactForm" class="form-horizontal" role="form" ng-submit="contact()" novalidate>
+                        <div class="form-group" ng-class="{'has-error' : contactForm.yourname.$error.required && !contactForm.yourname.$pristine }">
+                            <input type="text" class="form-control" name="yourname" placeholder="Your Name" ng-model="newcomment.author" required>
+                            <span ng-show="contactForm.yourname.$error.required && !contactForm.yourname.$pristine" class="help-block">Please tell me who you are.</span>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error' : contactForm.youremail.$error.required && !contactForm.youremail.$pristine }">
+                            <input type="email" class="form-control" name="youremail" placeholder="Your Email" ng-model="newcomment.youremail" required>
+                            <span ng-show="contactForm.youremail.$error.required && !contactForm.youremail.$pristine" class="help-block">Tell me where can I reply to you.</span>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error' : contactForm.yourmessage.$error.required && !contactForm.yourmessage.$pristine }">
+                            <textarea class="form-control" name="yourmessage" placeholder="Your Message" rows="10" ng-model="newcomment.yourmessage" required></textarea>
+                            <span ng-show="contactForm.yourmessage.$error.required && !contactForm.yourmessage.$pristine" class="help-block">Please write something here too.</span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" ng-disabled="contactForm.$invalid">Submit Comment</button>
+                           <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-10 col-md-6">
+                <h2>Contact Info<span></span></h2>
+                <ul class="row-table">
+                    <li><h5>Name</h5><span>{{profile.name}} {{profile.lastName}}</span></li>
+                    <li><h5>Email</h5><span>{{profile.email}}</span></li>
+                    <li><h5>Phone</h5><span>{{profile.tel}}</span></li>
+                </ul>
+                <p></p><h2>Buying an art project?<span></span></h2>
+                <a href="http://paypal.me/avkUS" target="_blank"><i class="fa fa-paypal box" aria-hidden="true"></i></a><br><br>
+                <div id="profile-social">
+                    <h2>My Social Presence<span></span></h2>
+                    <a ng-repeat="social in profile.social" href="{{social.url}}" target="_blank"><i class="{{social.icon}} box-small"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

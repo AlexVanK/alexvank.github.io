@@ -1,0 +1,71 @@
+/* Change the colors here to change the website theme */
+
+
+/* ------------------------ */
+/*      THEME (COLOR)       */
+/* ------------------------ */
+
+
+/* Vcard Background */
+html{
+    background: #fff;
+}
+body{
+    background: url(../imgs/bg/bg.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/* Main Color */
+a, a:hover,
+strong,
+blockquote::after,
+.fa.box-small{
+    color: #c9302c;
+}
+/* Main Color - borders */
+h1::before,
+blockquote,
+blockquote::after,
+.loader,
+.fa.box-small{
+    border-color: #c9302c;
+}
+/* Main Color - bg */
+button,
+h2 > span::after,
+scrollbar .scrollbar-thumb,
+[scrollbar] .scrollbar-thumb,
+[data-scrollbar] .scrollbar-thumb,
+#profile-download a:hover i, #profile-download a:hover label,
+#portfolio figure figcaption,
+#carousel-progressbar,
+.skill-progressbar,
+.quicklink,
+.fa.box,
+.fa-label,
+.logo > *,
+.close:hover::before,
+.close:hover::after,
+.loader-inner{
+    background-color: #c9302c;
+}
+
+
+
+/* Secondary Color - bg */
+
+
+
+/* Tertiary Color - border */
+footer,
+h1,
+h2 > span,
+.row-table li:not(:last-child){
+    border-color: #efefef;
+}
+/* Tertiai Color - border */
+blockquote,
+#resume .experience-box{
+    background: #efefef;
+}
